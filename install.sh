@@ -31,22 +31,14 @@ sudo apt-get install git
 
 # NVM
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-source ~/.profile
 
-nvm ls-remote
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-echo "Digite a versão do node a ser instalada, ex: v10.15.3: "
-read version
-nvm install $version
-nvm use $version
-
-sudo npm install npm -g
+nvm install --lts
 
 # Yarn
 sudo apt-get install yarn
-
-# Create React App
-sudo npm install -g create-react-app
 
 # vscode
 sudo apt-get install code
@@ -58,7 +50,9 @@ sudo snap install intellij-idea-community --classic
 sudo snap install gitkraken
 sudo snap install insomnia
 
-# Anaconda    : https://repo.anaconda.com/archive/Anaconda3-2019.03-MacOSX-x86_64.sh
+# Anaconda
+curl https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh | sudo bash
+
 # Firefox Dev : https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
 # Arduino     : https://www.arduino.cc/download_handler.php
 

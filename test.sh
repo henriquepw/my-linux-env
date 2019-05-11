@@ -4,21 +4,15 @@ sudo apt-get update
 
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 echo "---------"
-. ~/.profile
 
-echo "source ~/.profile"
 
-nvm ls-remote
 
-echo "Digite a versão do node a ser instalada, ex: v10.15.3: "
-read version
-nvm install $version
-nvm use $version
+nvm install node
+nvm use node --lts
 
 sudo npm install npm -g
-
-# Yarn
-sudo apt-get install yarn
+version=$(nvm ls | head -n1 | -dv -f2)
+npm="~/.nvm/versions/node/$version/node_modules/npm/bin/npm"
 
 # Create React App
 sudo npm install -g create-react-app
