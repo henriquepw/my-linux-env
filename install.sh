@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Para instalar esses programas é preciso entrar no modo sudo"
+echo "Root mode necessary."
 
 sudo apt-get update
 
