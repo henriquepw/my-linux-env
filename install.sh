@@ -5,6 +5,7 @@ echo "Root mode necessary."
 sudo apt-get update
 
 sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+sudo install xz-utils
 
 # Debian based systems
 
@@ -51,8 +52,14 @@ sudo snap install gitkraken
 sudo snap install insomnia
 
 # Anaconda
-curl https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh | sudo bash
+wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
+sudo bash ./Anaconda3*.sh
+sudo rm Anaconda3*.sh
 
-# Firefox Dev : https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
-# Arduino     : https://www.arduino.cc/download_handler.php
+# Firefox Dev : 
+wget https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
+tar jxf firefox-*.tar.bz2
 
+# Arduino     : 
+wget https://www.arduino.cc/download_handler.php
+tar xf arduino*.tar.xz

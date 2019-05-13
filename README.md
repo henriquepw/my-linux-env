@@ -9,6 +9,7 @@
 - IntelliJ
 - gitKraken
 - insomnia
+- Packet Tracer*
 - Create react app*
 - Anaconda 3*
 - Firefox Developer*
@@ -16,3 +17,7 @@
 - Lua language*
 - Icons: sea*
 - Theme: ?*
+- Steam*
+- VLC*
+
+*to add
