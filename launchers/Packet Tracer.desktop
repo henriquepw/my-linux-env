@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Packet Tracer
+Comment=
+Exec=/opt/---
+Icon=/home/test/Pictures/icons/packet-icon.png
+Path=
+Terminal=false
+StartupNotify=false

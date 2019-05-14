@@ -56,10 +56,43 @@ wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
 sudo bash ./Anaconda3*.sh
 sudo rm Anaconda3*.sh
 
-# Firefox Dev : 
-wget https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
+# Arduino
+wget https://downloads.arduino.cc/arduino-1.8.9-linux64.tar.xz
+tar xf arduino*.tar.xz
+sudo rm arduino*.tar.xz
+
+sudo mv arduino* /opt
+sudo bash /opt/arduino*/install.sh
+
+# Firefox Dev 
+wget https://download-installer.cdn.mozilla.net/pub/devedition/releases/67.0b19/linux-x86_64/en-US/firefox-67.0b19.tar.bz2
+wget https://upload.wikimedia.org/wikipedia/commons/f/fd/Firefox_Developer_Edition_Logo%2C_2017.png
 tar jxf firefox-*.tar.bz2
 
-# Arduino     : 
-wget https://www.arduino.cc/download_handler.php
-tar xf arduino*.tar.xz
+sudo rm firefox*.tar.bz2
+sudo mv firefox /opt
+
+sudo mv Firefox_Developer_Edition_Logo,_2017.png firefox-dev-icon.png
+sudo mkdir ~/Pictures/icons
+sudo mv firefox-dev-icon.png ~/Pictures/icons
+# create a launcher for firefox dev
+
+# Packet Tracer
+wget https://downloads.itechtics.com/Packet%20Tracer%207.2.1%20for%20Linux%2064%20bit.tar.gz
+wget https://www.etindy.com/sessions/managing-enterprise-networks-with-cisco-prime-infrastructure-nmenpi/icon.png
+
+mkdir packet-tracer
+sudo mv Packet*.tar.gz /packet-tracer
+cd packet-tracer
+
+tar xfj Packet*.tar.gz
+sudo rm Packet*.tar.gz
+
+sudo mv icon.png packet-icon.png
+sudo mv packet-icon.png ~/Pictures/icons
+
+# Genymotion with VM box
+
+# VLC
+
+# Steam
