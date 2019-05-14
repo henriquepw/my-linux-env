@@ -9,14 +9,15 @@
 - IntelliJ
 - gitKraken
 - insomnia
+- Genymotion for fun*
 - Packet Tracer*
-- Create react app*
 - Anaconda 3
-- Firefox Developer*
+- Firefox Developer
 - Arduino
 - Lua language*
-- Steam*
-- VLC*
+- Steam
+- VLC
+- Spotify
 - Icons: sea*
 - Theme: ?*
 

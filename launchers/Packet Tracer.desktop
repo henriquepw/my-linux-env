@@ -8,3 +8,4 @@ Icon=/home/test/Pictures/icons/packet-icon.png
 Path=
 Terminal=false
 StartupNotify=false
+Categories=Network;
