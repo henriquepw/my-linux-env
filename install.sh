@@ -2,10 +2,22 @@
 
 echo "Root mode necessary."
 
+local=$(pwd)
+
 sudo apt-get update
 
+# Dependecies
 sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
 sudo install xz-utils
+
+sudo apt-get install -y libqt5webkit5 libqt5multimedia5 libqt5xml5 libqt5script5 libqt5scripttools5 
+wget -//mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb 
+wget -//ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb 
+dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb 
+dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
+
+sudo apt-get install apt-transport-https
+sudo apt-get install openjdk-8-jre
 
 [ -d ~/Pictures/icons ] || sudo mkdir ~/Pictures/icons
 # Debian based systems
@@ -32,9 +44,12 @@ sudo apt update
 #################
 # installations #
 #################
-sudo apt-get install apt-transport-https
-sudo apt-get install openjdk-8-jre
 sudo apt-get install git
+
+# oh my zsh - terminal
+sudo apt-get install zsh 
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s /bin/zsh
 
 # NVM
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
@@ -97,10 +112,8 @@ sudo rm Packet*.tar.gz
 sudo mv icon.png packet-icon.png
 sudo mv packet-icon.png ~/Pictures/icons
 
-sudo bash install.sh
-#cd ..
-#sudo mv packet-tracer /opt
-#bash /opt/packet-tracer/install.sh
+sudo bash install
+cd ..
 # create a launcher for Packet Tracer
 
 # Genymotion with VM box
@@ -113,3 +126,14 @@ sudo apt-get install vlc
 wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
 sudo dpkg -i steam_latest.deb
 
+# StartUML
+wget http://staruml-7a0.kxcdn.com/releases/StarUML-3.1.0-x86_64.AppImage
+
+sudo mv StartUML*.AppImage /opt/
+cd /opt
+sudo StartUML*.AppImage
+cd $local
+
+# end
+sudo apt-get install -f
+# sudo apt-get install upgrade
