@@ -6,13 +6,16 @@ local=$(pwd)
 
 sudo apt-get update
 
-# Dependecies
+###############
+# Dependecies #
+###############
+
 sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
 sudo install xz-utils
 
 sudo apt-get install -y libqt5webkit5 libqt5multimedia5 libqt5xml5 libqt5script5 libqt5scripttools5 
-wget -//mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb 
-wget -//ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb 
+wget https://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb 
+wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb 
 dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb 
 dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
 
@@ -44,12 +47,9 @@ sudo apt update
 #################
 # installations #
 #################
-sudo apt-get install git
 
-# oh my zsh - terminal
-sudo apt-get install zsh 
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s /bin/zsh
+# Git
+sudo apt-get install git
 
 # NVM
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
@@ -87,7 +87,7 @@ sudo mv arduino* /opt
 sudo bash /opt/arduino*/install.sh
 
 # Firefox Dev 
-wget https://download-installer.cdn.mozilla.net/pub/devedition/releases/67.0b19/linux-x86_64/en-US/firefox-67.0b19.tar.bz2
+wget https://download-installer.cdn.mozilla.net/pub/devedition/releases/68.0b4/linux-x86_64/en-US/firefox-68.0b4.tar.bz2
 wget https://upload.wikimedia.org/wikipedia/commons/f/fd/Firefox_Developer_Edition_Logo%2C_2017.png
 tar jxf firefox-*.tar.bz2
 
@@ -96,8 +96,7 @@ sudo mv firefox /opt
 
 sudo mv Firefox_Developer_Edition_Logo,_2017.png firefox-dev-icon.png
 sudo mv firefox-dev-icon.png ~/Pictures/icons
-sudo mv /launcher/Firefox\ dev.desktop /usr/share/applications
-# create a launcher for firefox dev
+sudo cp /launchers/Firefox\ dev.desktop /usr/share/applications
 
 # Packet Tracer
 [ -d ./packet-tracer ] || mkdir packet-tracer
@@ -114,13 +113,12 @@ sudo mv packet-icon.png ~/Pictures/icons
 
 sudo bash install
 cd ..
-# create a launcher for Packet Tracer
+sudo cp /launchers/Packet\ Tracer.desktop /usr/share/applications
 
 # Genymotion with VM box
 
 # VLC
 sudo apt-get install vlc
-# sudo snap install vlc
 
 # Steam
 wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
@@ -129,11 +127,16 @@ sudo dpkg -i steam_latest.deb
 # StartUML
 wget http://staruml-7a0.kxcdn.com/releases/StarUML-3.1.0-x86_64.AppImage
 
-sudo mv StartUML*.AppImage /opt/
+sudo mv StarUML-3.1.0-x86_64.AppImage /opt/
 cd /opt
-sudo StartUML*.AppImage
+sudo StarUML-3.1.0-x86_64.AppImage
 cd $local
 
 # end
 sudo apt-get install -f
-# sudo apt-get install upgrade
+sudo apt-get upgrade
+
+# oh my zsh - terminal
+sudo apt-get install zsh 
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s /bin/zsh
