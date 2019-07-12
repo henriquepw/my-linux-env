@@ -1,29 +1,51 @@
+# Debian based systems
 #!/bin/bash
 
 echo "Root mode necessary."
 
 local=$(pwd)
 
-sudo apt-get update
+sudo apt-get update -y
 
 ###############
 # Dependecies #
 ###############
 
-sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
-sudo install xz-utils
+sudo apt-get install  \
+    libgl1-mesa-glx \
+    libegl1-mesa  \
+    libxrandr2  \
+    libxrandr2  \
+    libxss1  \
+    libxcursor1  \
+    libxcomposite1  \
+    libasound2  \
+    libxi6  \
+    libxtst6  \
+    xz-utils \
+    libqt5webkit5  \
+    libqt5multimedia5  \
+    libqt5xml5  \
+    libqt5script5 \
+    libqt5scripttools5 -y
 
-sudo apt-get install -y libqt5webkit5 libqt5multimedia5 libqt5xml5 libqt5script5 libqt5scripttools5 
-wget https://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb 
-wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb 
-dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb 
-dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
+wget https://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb -y
+wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb -y 
 
-sudo apt-get install apt-transport-https
-sudo apt-get install openjdk-8-jre
+dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb  -y
+dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb -y
 
-[ -d ~/Pictures/icons ] || sudo mkdir ~/Pictures/icons
-# Debian based systems
+sudo apt-get install openjdk-8-jre -y
+
+# Docker
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common -y
+
+[ -d ~/Pictures/icons ] || sudo mkdir ~/Pictures/icons -y
 
 ################
 # Repositories #
@@ -31,25 +53,37 @@ sudo apt-get install openjdk-8-jre
 
 # vscode
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/  -y
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list' -y
 
 # yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 # vlc
-sudo add-apt-repository ppa:videolan/master-daily
+sudo add-apt-repository ppa:videolan/master-daily -y
 
-sudo apt-get update
-sudo apt update
+sudo apt-get update -y
+sudo apt update -y
+
+# Docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Mint tessa   -> bionic
+# Ubuntu 19.04 -> Cosmic 
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt-get update -y
 
 #################
 # installations #
 #################
 
 # Git
-sudo apt-get install git
+sudo apt-get install git -y
 
 # NVM
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
@@ -60,17 +94,17 @@ export NVM_DIR="$HOME/.nvm"
 nvm install --lts
 
 # Yarn
-sudo apt-get install yarn
+sudo apt-get install yarn -y
 
 # vscode
-sudo apt-get install code
+sudo apt-get install code -y
 sudo update-alternatives --set editor /usr/bin/code
 
 # Snap
-sudo apt install snapd
+sudo apt install snapd -y
 sudo snap install intellij-idea-community --classic
-sudo snap install gitkraken
 sudo snap install insomnia
+sudo snap install postbird
 sudo snap install spotify
 
 # Anaconda
@@ -111,32 +145,35 @@ sudo rm Packet*.tar.gz
 sudo mv icon.png packet-icon.png
 sudo mv packet-icon.png ~/Pictures/icons
 
-sudo bash install
+sudo bash install -y
 cd ..
 sudo cp /launchers/Packet\ Tracer.desktop /usr/share/applications
 
-# Genymotion with VM box
-
 # VLC
-sudo apt-get install vlc
+sudo apt-get install vlc -y
+
+# Docker
+sudo apt-get install \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io -y
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
 # Steam
 wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
 sudo dpkg -i steam_latest.deb
 
-# StartUML
-wget http://staruml-7a0.kxcdn.com/releases/StarUML-3.1.0-x86_64.AppImage
-
-sudo mv StarUML-3.1.0-x86_64.AppImage /opt/
-cd /opt
-sudo StarUML-3.1.0-x86_64.AppImage
-cd $local
+# cd $local
 
 # end
-sudo apt-get install -f
-sudo apt-get upgrade
+sudo apt-get install -fy
+# sudo apt-get upgrade
 
 # oh my zsh - terminal
 sudo apt-get install zsh 
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
+
+# I recommend reboot the system

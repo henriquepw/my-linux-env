@@ -1,42 +1,53 @@
-# my linux environment for programming
+# My linux environment for programming
 ## Debian based systems
 
-### To be installed
-- Git
-- VS Code
-- NVM
-- Node.js
-- Yarn
-- IntelliJ
-- gitKraken
-- insomnia
-- Genymotion for fun*
-- Packet Tracer
+### The script installs these programs
 - Anaconda 3
-- Firefox Developer
+- Android Studio*
 - Arduino
+- Discord
+- Docker*
+- Firefox Developer
+- Genymotion for fun*
+- Git
+- Google Chrome*
+- insomnia
+- IntelliJ
 - Lua language*
+- MongoDb Compass*
+- Node.js
+- NVM
+- Packet Tracer
+- PostBird
+- Reactotron*
+- Snap
+- Spotify
 - Steam
 - VLC
-- Spotify
-- PostgreSQL*
-- StartUML
-- mySQL*
+- VS Code
+- Yarn
+
 - Icons: sea*
 - Theme: Canta*
 
-*to add
+`* Not yet` 
 
-### VS Code puglins*
-- Code Runner
+## My Vs Code config
+
+### VS Code plugin
+- Better Comments
+- Bracket Pair Colorizer
 - Color Highlight
+- Color Picker
 - Docker
 - DotENV
-- EditorCOnfig for VS Code
+- EditorConfig for VS Code
 - ESLint
+- GitLens
 - Markdown All in One
 - Material Icon Theme
-- Prettier - COde formatter
+- Material Theme
+- Prettier - Code formatter
 - SynthWave '84
 - vscode-database
 - vscode-styled-components
@@ -46,13 +57,43 @@
 ```json
 {
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "SynthWave '84",
+  "workbench.colorTheme": "Material Theme Palenight High Contrast",
 
   "editor.fontFamily": "Fira Code, monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 18,
+  "editor.lineHeight": 26,
+
+  "editor.renderLineHighlight": "gutter",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [80, 120],
+  "editor.tabSize": 2,
+  "terminal.integrated.fontSize": 16,
+
+  // add terminal integration
 
   "eslint.autoFixOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescripttreact",
+      "autoFix": true
+    }
+  ],
+
+  "prettier.endOfLine": "lf",
+  "prettier.eslintIntegration": true,
+  "files.eol": "\n",
+
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always"
 }
 ```
