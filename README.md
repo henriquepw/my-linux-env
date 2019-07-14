@@ -8,21 +8,22 @@
 - Discord
 - Docker
 - Firefox Developer
-- Genymotion for fun*
+- Genymotion for fun
 - Git
-- Chromium*
+- Gnome Tweak
+- Chromium
 - insomnia
 - IntelliJ
-- Lua language*
-- MongoDb Compass*
+- MongoDb Compass
 - Node.js
 - NVM
 - Packet Tracer
 - PostBird
-- Reactotron*
+- Reactotron
 - Snap
 - Spotify
 - Steam
+- Virtual Box
 - VLC
 - VS Code
 - Yarn

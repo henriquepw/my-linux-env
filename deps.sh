@@ -16,7 +16,10 @@ sudo apt-get install  \
     libqt5multimedia5  \
     libqt5xml5  \
     libqt5script5 \
-    libqt5scripttools5 -y
+    libqt5scripttools5 \
+    gcc-multilib \
+    lib32z1 \
+    lib32stdc++6 -y
 
 wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb
 wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb 
@@ -35,5 +38,7 @@ sudo apt-get install \
     software-properties-common -y
 
 [ -d ~/Pictures/icons ] || mkdir ~/Pictures/icons
+[ -d ~/Appimages ] || mkdir ~/Appimages
+[ -d ~/Android/Sdk ] || mkdir -p ~/Android/Sdk
 
 sudo apt-get update -y

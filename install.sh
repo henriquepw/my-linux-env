@@ -53,6 +53,17 @@ sudo apt-get install yarn -y
 sudo apt-get install code -y
 sudo update-alternatives --set editor /usr/bin/code
 
+# Reactotron
+wget https://github.com/infinitered/reactotron/releases/download/v2.16.0/Reactotron.2.16.0.AppImage -O reactotron.appimage
+chmod +x reactotron.appimage
+sudo mv reactotron.appimage ~/Appimages/
+
+cd ~/Appimages && sudo ./reactotron.appimage && cd $local
+
+# MongoDb Compass
+wget https://downloads.mongodb.com/compass/mongodb-compass_1.18.0_amd64.deb -O compass.deb
+sudo dpkg -i compass.deb
+
 # Snap
 sudo apt install snapd -y
 sudo snap install intellij-idea-community --classic
@@ -64,6 +75,7 @@ sudo snap install spotify
 wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
 sudo bash ./Anaconda3*.sh
 sudo rm Anaconda3*.sh
+sudo chown -R $USER ~/anaconda3
 
 # Arduino
 wget https://downloads.arduino.cc/arduino-1.8.9-linux64.tar.xz
@@ -125,15 +137,22 @@ sudo apt install --assume-yes chromium-browser
 # wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
 # sudo dpkg -i steam_latest.deb
 
-# cd $local
+#Virtual Box
+wget https://download.virtualbox.org/virtualbox/6.0.8/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb
+sudo dpkg -i virtualbox-6.0_6.0.8-130520_Ubuntu_bionic_amd64.deb
+
+# Genymotion for fun
+wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin
+sudo chmod +x ./genymotion-3.0.2-linux_x64.bin
+
+sudo mv genymotion-3.0.2-linux_x64.bin /opt/genymotion.bin
+cd /opt && ./genymotion.bin -y
+
+cd $local
 
 # Gnome Tweak
 sudo apt install gnome-tweak-tool -y
 sudo apt install chrome-gnome-shell -y
-
-# Icons
-sudo add-apt-repository -u ppa:snwh/ppa -y
-sudo apt install paper-icon-theme -y
 
 # Theme
 sudo add-apt-repository ppa:daniruiz/flat-remix -y
