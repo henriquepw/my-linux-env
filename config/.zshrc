@@ -10,7 +10,7 @@ export ZSH="~/.oh-my-zsh"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$HOME/.fastlane/bin:$PATH"
 
-export PATH=~/anaconda3/bin:$PATH
+export PATH="~/anaconda3/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,

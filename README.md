@@ -3,7 +3,6 @@
 
 ### The script installs these programs
 - Anaconda 3
-- Android Studio*
 - Arduino
 - Discord
 - Docker
