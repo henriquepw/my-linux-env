@@ -118,6 +118,9 @@ sudo usermod -aG docker $USER
 wget https://dl.discordapp.net/apps/linux/0.0.9/discord-0.0.9.deb
 sudo dpkg -i discord-0.0.9.deb
 
+# Chromium
+sudo apt install --assume-yes chromium-browser
+
 # Steam
 # wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
 # sudo dpkg -i steam_latest.deb

@@ -10,7 +10,7 @@
 - Firefox Developer
 - Genymotion for fun*
 - Git
-- Google Chrome*
+- Chromium*
 - insomnia
 - IntelliJ
 - Lua language*
