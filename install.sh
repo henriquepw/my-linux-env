@@ -1,8 +1,15 @@
 # Debian based systems
 #!/bin/bash
 
+init()
+{
+  echo "$1: INIT ================="
+  echo ""
+}
+
 echo "Root mode necessary."
 
+mkdir installation && cd installation
 local=$(pwd)
 
 sudo apt-get update -y
@@ -10,77 +17,21 @@ sudo apt-get update -y
 ###############
 # Dependecies #
 ###############
+init DEPENDECIES
 
-sudo apt-get install  \
-    libgl1-mesa-glx \
-    libegl1-mesa  \
-    libxrandr2  \
-    libxrandr2  \
-    libxss1  \
-    libxcursor1  \
-    libxcomposite1  \
-    libasound2  \
-    libxi6  \
-    libxtst6  \
-    xz-utils \
-    libqt5webkit5  \
-    libqt5multimedia5  \
-    libqt5xml5  \
-    libqt5script5 \
-    libqt5scripttools5 -y
-
-wget https://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb -y
-wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb -y 
-
-dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb  -y
-dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb -y
-
-sudo apt-get install openjdk-8-jre -y
-
-# Docker
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common -y
-
-[ -d ~/Pictures/icons ] || sudo mkdir ~/Pictures/icons -y
+sudo bash ./deps.sh
 
 ################
 # Repositories #
 ################
+init REPOSITORIES
 
-# vscode
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/  -y
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list' -y
-
-# yarn
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-
-# vlc
-sudo add-apt-repository ppa:videolan/master-daily -y
-
-sudo apt-get update -y
-sudo apt update -y
-
-# Docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-# Mint tessa   -> bionic
-# Ubuntu 19.04 -> Cosmic 
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-
-sudo apt-get update -y
+sudo bash ./reps.sh
 
 #################
 # installations #
 #################
+init INSTALLATIONS
 
 # Git
 sudo apt-get install git -y
@@ -92,6 +43,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 nvm install --lts
+
+sudo chown -R $USER ~/.nvm
 
 # Yarn
 sudo apt-get install yarn -y
@@ -161,19 +114,36 @@ sudo apt-get install \
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
+# Discord
+wget https://dl.discordapp.net/apps/linux/0.0.9/discord-0.0.9.deb
+sudo dpkg -i discord-0.0.9.deb
+
 # Steam
-wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
-sudo dpkg -i steam_latest.deb
+# wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
+# sudo dpkg -i steam_latest.deb
 
 # cd $local
 
+# Gnome Tweak
+sudo apt install gnome-tweak-tool -y
+sudo apt install chrome-gnome-shell -y
+
+# Icons
+sudo add-apt-repository -u ppa:snwh/ppa -y
+sudo apt install paper-icon-theme -y
+
+# Theme
+sudo add-apt-repository ppa:daniruiz/flat-remix -y
+sudo apt-get update -y
+sudo apt-get install flat-remix-gnome -y
+
 # end
-sudo apt-get install -fy
-# sudo apt-get upgrade
+sudo apt-get install -f
+sudo apt --fix-broken install -y
 
 # oh my zsh - terminal
 sudo apt-get install zsh 
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
 
-# I recommend reboot the system
+echo "I recommend reboot the system"

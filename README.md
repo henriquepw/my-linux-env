@@ -6,7 +6,7 @@
 - Android Studio*
 - Arduino
 - Discord
-- Docker*
+- Docker
 - Firefox Developer
 - Genymotion for fun*
 - Git
@@ -26,9 +26,6 @@
 - VLC
 - VS Code
 - Yarn
-
-- Icons: sea*
-- Theme: Canta*
 
 `* Not yet` 
 
@@ -70,7 +67,7 @@
   "editor.tabSize": 2,
   "terminal.integrated.fontSize": 16,
 
-  // add terminal integration
+  "terminal.integrated.shell.osx": "/bin/zsh",
 
   "eslint.autoFixOnSave": true,
   "eslint.validate": [
