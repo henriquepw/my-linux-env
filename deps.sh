@@ -27,7 +27,7 @@ wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8
 sudo dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb
 sudo dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
 
-sudo apt-get install openjdk-8-jre -y
+sudo add-apt-repository ppa:openjdk-r/ppa
 
 # Docker
 sudo apt-get install \

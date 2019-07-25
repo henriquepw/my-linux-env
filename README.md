@@ -6,6 +6,7 @@
 - Arduino
 - Discord
 - Docker
+- Figma
 - Firefox Developer
 - Genymotion for fun
 - Git

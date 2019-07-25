@@ -70,6 +70,7 @@ sudo snap install intellij-idea-community --classic
 sudo snap install insomnia
 sudo snap install postbird
 sudo snap install spotify
+sudo snap install figma-linux
 
 # Anaconda
 wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
@@ -125,6 +126,11 @@ sudo apt-get install \
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
+
+# Databases
+sudo docker pull postgres
+sudo docker pull mongo
+sudo docker pull redis
 
 # Discord
 wget https://dl.discordapp.net/apps/linux/0.0.9/discord-0.0.9.deb

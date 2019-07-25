@@ -1,4 +1,7 @@
 #!/bin/bash
+sudo apt-get install \
+    openjdk-8-jre \
+    openjdk-8-jdk -y
 
 # vscode
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
