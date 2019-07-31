@@ -3,11 +3,14 @@
 
 init()
 {
+  echo "=========================="
   echo "$1: INIT ================="
-  echo ""
+  echo "=========================="
 }
 
-echo "Root mode necessary."
+echo "======================="
+echo "| Root mode necessary |"
+echo "======================="
 
 mkdir installation && cd installation
 local=$(pwd)
@@ -19,14 +22,90 @@ sudo apt-get update -y
 ###############
 init DEPENDECIES
 
-sudo bash ./deps.sh
+sudo apt-get install  \
+    libgl1-mesa-glx \
+    libegl1-mesa  \
+    libxrandr2  \
+    libxrandr2  \
+    libxss1  \
+    libxcursor1  \
+    libxcomposite1  \
+    libasound2  \
+    libxi6  \
+    libxtst6  \
+    xz-utils \
+    libqt5webkit5  \
+    libqt5multimedia5  \
+    libqt5xml5  \
+    libqt5script5 \
+    libqt5scripttools5 \
+    gcc-multilib \
+    lib32z1 \
+    lib32stdc++6 -y
+
+wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb
+wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb 
+
+sudo dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb
+sudo dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
+
+sudo add-apt-repository ppa:openjdk-r/ppa
+
+# Docker
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common -y
+
+[ -d ~/Pictures/icons ] || mkdir ~/Pictures/icons
+[ -d ~/Appimages ] || mkdir ~/Appimages
+[ -d ~/Android/Sdk ] || mkdir -p ~/Android/Sdk
+
+sudo apt-get update -y
 
 ################
 # Repositories #
 ################
 init REPOSITORIES
 
-sudo bash ./reps.sh
+sudo apt-get install \
+    openjdk-8-jre \
+    openjdk-8-jdk -y
+
+# vscode
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/  -y
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list' -y
+
+# yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+# vlc
+sudo add-apt-repository ppa:videolan/master-daily -y
+
+# Docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Ask for OS -----
+# Mint tessa   -> bionic
+# Ubuntu 19.04 -> Cosmic
+# Outher       -> lsb_release -cs
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+# Virtual Box
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+
+sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib"
+
+sudo apt-get update -y
+sudo apt update -y
 
 #################
 # installations #
@@ -70,7 +149,6 @@ sudo snap install intellij-idea-community --classic
 sudo snap install insomnia
 sudo snap install postbird
 sudo snap install spotify
-sudo snap install figma-linux
 
 # Anaconda
 wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
@@ -160,11 +238,6 @@ cd $local
 sudo apt install gnome-tweak-tool -y
 sudo apt install chrome-gnome-shell -y
 
-# Theme
-sudo add-apt-repository ppa:daniruiz/flat-remix -y
-sudo apt-get update -y
-sudo apt-get install flat-remix-gnome -y
-
 # end
 sudo apt-get install -f
 sudo apt --fix-broken install -y
@@ -174,4 +247,8 @@ sudo apt-get install zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
 
-echo "I recommend reboot the system"
+bash ./zsh_config.sh
+
+echo "================================="
+echo "| I recommend reboot the system |"
+echo "================================="
