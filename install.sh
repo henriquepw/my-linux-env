@@ -12,7 +12,11 @@ echo "======================="
 echo "| Root mode necessary |"
 echo "======================="
 
-mkdir installation && cd installation
+sudo dpkg-reconfigure gconf2
+
+[ -d ./installation ] || mkdir ./installation
+cd installation
+
 local=$(pwd)
 
 sudo apt-get update -y
@@ -41,15 +45,9 @@ sudo apt-get install  \
     libqt5scripttools5 \
     gcc-multilib \
     lib32z1 \
-    lib32stdc++6 -y
+    lib32stdc++6 \
+    g++ -y
 
-wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb
-wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb 
-
-sudo dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb
-sudo dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
-
-sudo add-apt-repository ppa:openjdk-r/ppa
 
 # Docker
 sudo apt-get install \
@@ -58,6 +56,12 @@ sudo apt-get install \
     curl \
     gnupg-agent \
     software-properties-common -y
+
+wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb
+wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb 
+
+sudo dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb
+sudo dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
 
 [ -d ~/Pictures/icons ] || mkdir ~/Pictures/icons
 [ -d ~/Appimages ] || mkdir ~/Appimages
@@ -70,9 +74,8 @@ sudo apt-get update -y
 ################
 init REPOSITORIES
 
-sudo apt-get install \
-    openjdk-8-jre \
-    openjdk-8-jdk -y
+# Java
+sudo add-apt-repository ppa:openjdk-r/ppa
 
 # vscode
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -112,8 +115,10 @@ sudo apt update -y
 #################
 init INSTALLATIONS
 
-# Git
-sudo apt-get install git -y
+sudo apt-get install \
+    openjdk-8-jre \    # JRE 8
+    openjdk-8-jdk \    # JDK 8
+    git -y             # Git
 
 # NVM
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
@@ -123,7 +128,7 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install --lts
 
-sudo chown -R $USER ~/.nvm
+sudo chown -R $USER ~/.nvm # Set owner
 
 # Yarn
 sudo apt-get install yarn -y
@@ -137,7 +142,9 @@ wget https://github.com/infinitered/reactotron/releases/download/v2.16.0/Reactot
 chmod +x reactotron.appimage
 sudo mv reactotron.appimage ~/Appimages/
 
-cd ~/Appimages && sudo ./reactotron.appimage && cd $local
+cd ~/Appimages
+sudo ./reactotron.appimage
+cd $local
 
 # MongoDb Compass
 wget https://downloads.mongodb.com/compass/mongodb-compass_1.18.0_amd64.deb -O compass.deb
@@ -145,6 +152,7 @@ sudo dpkg -i compass.deb
 
 # Snap
 sudo apt install snapd -y
+
 sudo snap install intellij-idea-community --classic
 sudo snap install insomnia
 sudo snap install postbird
@@ -189,7 +197,7 @@ sudo rm Packet*.tar.gz
 sudo mv icon.png packet-icon.png
 sudo mv packet-icon.png ~/Pictures/icons
 
-sudo bash install -y
+sudo bash ./install -y
 cd ..
 sudo cp /launchers/Packet\ Tracer.desktop /usr/share/applications
 
