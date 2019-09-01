@@ -45,6 +45,7 @@
 - Markdown All in One
 - Material Icon Theme
 - Material Theme
+- PlatformIO IDE
 - Prettier - Code formatter
 - SynthWave '84
 - vscode-database
@@ -55,7 +56,7 @@
 ```json
 {
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Material Theme Palenight High Contrast",
+  "workbench.colorTheme": "Material Theme Palenight",
 
   "editor.fontFamily": "Fira Code, monospace",
   "editor.fontLigatures": true,

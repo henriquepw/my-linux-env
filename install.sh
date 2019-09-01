@@ -172,19 +172,7 @@ sudo rm arduino*.tar.xz
 sudo mv arduino* /opt
 sudo bash /opt/arduino*/install.sh
 
-# Firefox Dev 
-wget https://download-installer.cdn.mozilla.net/pub/devedition/releases/68.0b4/linux-x86_64/en-US/firefox-68.0b4.tar.bz2
-wget https://upload.wikimedia.org/wikipedia/commons/f/fd/Firefox_Developer_Edition_Logo%2C_2017.png
-tar jxf firefox-*.tar.bz2
-
-sudo rm firefox*.tar.bz2
-sudo mv firefox /opt
-
-sudo mv Firefox_Developer_Edition_Logo,_2017.png firefox-dev-icon.png
-sudo mv firefox-dev-icon.png ~/Pictures/icons
-sudo cp /launchers/Firefox\ dev.desktop /usr/share/applications
-
-# Packet Tracer
+# Packet Tracer -> to Fix
 [ -d ./packet-tracer ] || mkdir packet-tracer
 cd packet-tracer
 
@@ -232,7 +220,7 @@ sudo apt install putty -y
 # wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
 # sudo dpkg -i steam_latest.deb
 
-#Virtual Box
+# Virtual Box 6
 wget https://download.virtualbox.org/virtualbox/6.0.8/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb
 sudo dpkg -i virtualbox-6.0_6.0.8-130520_Ubuntu_bionic_amd64.deb
 
