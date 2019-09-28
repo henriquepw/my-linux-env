@@ -4,7 +4,7 @@
 init()
 {
   echo "=========================="
-  echo "$1: INIT ================="
+  echo "= $1: INIT ==============="
   echo "=========================="
 }
 
@@ -48,7 +48,6 @@ sudo apt-get install  \
     lib32stdc++6 \
     g++ -y
 
-
 # Docker
 sudo apt-get install \
     apt-transport-https \
@@ -57,11 +56,13 @@ sudo apt-get install \
     gnupg-agent \
     software-properties-common -y
 
-wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb
-wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb 
+wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb \
+  -o libicu52.deb
+wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb \
+  -o libpng12.deb
 
-sudo dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb
-sudo dpkg -i libpng12-0_1.2.50-2+deb8u3_amd64.deb
+sudo dpkg -i libicu52.deb
+sudo dpkg -i libpng12.deb
 
 [ -d ~/Pictures/icons ] || mkdir ~/Pictures/icons
 [ -d ~/Appimages ] || mkdir ~/Appimages
@@ -77,11 +78,6 @@ init REPOSITORIES
 # Java
 sudo add-apt-repository ppa:openjdk-r/ppa
 
-# vscode
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/  -y
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list' -y
-
 # yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
@@ -93,12 +89,17 @@ sudo add-apt-repository ppa:videolan/master-daily -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Ask for OS -----
-# Mint tessa   -> bionic
-# Ubuntu 19.04 -> Cosmic
-# Outher       -> lsb_release -cs
+# Mint tessa or tina    -> bionic
+# Ubuntu 19.04          -> Cosmic
+# Outher                -> lsb_release -cs
+version=$(lsb_release -cs)
+
+if [ version -eq "tina" ] || [ version -eq "tessa" ]; then
+  version="bionic"
+
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
+   $version \
    stable"
 
 # Virtual Box
@@ -128,17 +129,13 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install --lts
 
-sudo chown -R $USER ~/.nvm # Set owner
-
 # Yarn
 sudo apt-get install yarn -y
 
-# vscode
-sudo apt-get install code -y
-sudo update-alternatives --set editor /usr/bin/code
-
 # Reactotron
-wget https://github.com/infinitered/reactotron/releases/download/v2.16.0/Reactotron.2.16.0.AppImage -O reactotron.appimage
+wget https://github.com/infinitered/reactotron/releases/download/v2.16.0/Reactotron.2.16.0.AppImage \ 
+  -O reactotron.appimage
+
 chmod +x reactotron.appimage
 sudo mv reactotron.appimage ~/Appimages/
 
@@ -153,41 +150,19 @@ sudo dpkg -i compass.deb
 # Snap
 sudo apt install snapd -y
 
+sudo snap install --classic code # VS Code
 sudo snap install intellij-idea-community --classic
 sudo snap install insomnia
 sudo snap install postbird
 sudo snap install spotify
 
-# Anaconda
-wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
-sudo bash ./Anaconda3*.sh
-sudo rm Anaconda3*.sh
-sudo chown -R $USER ~/anaconda3
-
 # Arduino
-wget https://downloads.arduino.cc/arduino-1.8.9-linux64.tar.xz
-tar xf arduino*.tar.xz
-sudo rm arduino*.tar.xz
+wget https://downloads.arduino.cc/arduino-1.8.10-linux64.tar.xz
+tar xf arduino-1.8.10-linux64.tar.xz
+sudo rm arduino-1.8.10-linux64.tar.xz
 
 sudo mv arduino* /opt
 sudo bash /opt/arduino*/install.sh
-
-# Packet Tracer -> to Fix
-[ -d ./packet-tracer ] || mkdir packet-tracer
-cd packet-tracer
-
-wget https://downloads.itechtics.com/Packet%20Tracer%207.2.1%20for%20Linux%2064%20bit.tar.gz
-wget https://www.etindy.com/sessions/managing-enterprise-networks-with-cisco-prime-infrastructure-nmenpi/icon.png
-
-tar xf Packet*.tar.gz
-sudo rm Packet*.tar.gz
-
-sudo mv icon.png packet-icon.png
-sudo mv packet-icon.png ~/Pictures/icons
-
-sudo bash ./install -y
-cd ..
-sudo cp /launchers/Packet\ Tracer.desktop /usr/share/applications
 
 # VLC
 sudo apt-get install vlc -y
@@ -205,44 +180,33 @@ sudo usermod -aG docker $USER
 sudo docker pull postgres
 sudo docker pull mongo
 sudo docker pull redis
+sudo docker pull influxdb
 
 # Discord
 wget https://dl.discordapp.net/apps/linux/0.0.9/discord-0.0.9.deb
 sudo dpkg -i discord-0.0.9.deb
 
-# Chromium
-sudo apt install --assume-yes chromium-browser
-
-# PuTTY
-sudo apt install putty -y 
-
-# Steam
-# wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
-# sudo dpkg -i steam_latest.deb
-
 # Virtual Box 6
-wget https://download.virtualbox.org/virtualbox/6.0.8/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb
-sudo dpkg -i virtualbox-6.0_6.0.8-130520_Ubuntu_bionic_amd64.deb
+wget https://download.virtualbox.org/virtualbox/6.0.8/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb -o vmbox.deb
+sudo dpkg -i vmbox.deb
 
 # Genymotion for fun
-wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin
-sudo chmod +x ./genymotion-3.0.2-linux_x64.bin
+wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin -o genymotion.bin
+sudo chmod +x ./genymotion.bin
 
-sudo mv genymotion-3.0.2-linux_x64.bin /opt/genymotion.bin
+sudo mv genymotion.bin /opt/genymotion.bin
 cd /opt && ./genymotion.bin -y
 
 cd $local
-
-# Gnome Tweak
-sudo apt install gnome-tweak-tool -y
-sudo apt install chrome-gnome-shell -y
 
 # end
 sudo apt-get install -f
 sudo apt --fix-broken install -y
 
+sudo chown -R $USER ~/*
+
 # oh my zsh - terminal
-sudo apt-get install zsh 
+sudo apt-get install zsh -y
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
 
