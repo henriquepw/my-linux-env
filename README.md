@@ -2,22 +2,17 @@
 ## Debian based systems
 
 ### The script installs these programs
-- Anaconda 3
 - Arduino
 - Discord
 - Docker
-- Figma
-- Firefox Developer
 - Genymotion for fun
 - Git
 - Gnome Tweak
-- Chromium
 - insomnia
 - IntelliJ
 - MongoDb Compass
 - Node.js
 - NVM
-- Packet Tracer
 - PostBird
 - Reactotron
 - Snap
@@ -45,9 +40,7 @@
 - Markdown All in One
 - Material Icon Theme
 - Material Theme
-- PlatformIO IDE
 - Prettier - Code formatter
-- SynthWave '84
 - vscode-database
 - vscode-styled-components
 
@@ -62,6 +55,9 @@
   "editor.fontLigatures": true,
   "editor.fontSize": 18,
   "editor.lineHeight": 26,
+
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.showSlider": "always",
 
   "editor.renderLineHighlight": "gutter",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
