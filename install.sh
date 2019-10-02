@@ -94,7 +94,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 # Outher                -> lsb_release -cs
 version=$(lsb_release -cs)
 
-if [ version -eq "tina" ] || [ version -eq "tessa" ]; then
+if [ $version = "tina" ] || [ $version = "tessa" ]; then
   version="bionic"
 fi
 
