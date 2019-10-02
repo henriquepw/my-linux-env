@@ -96,6 +96,7 @@ version=$(lsb_release -cs)
 
 if [ version -eq "tina" ] || [ version -eq "tessa" ]; then
   version="bionic"
+fi
 
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
