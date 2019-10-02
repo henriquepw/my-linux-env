@@ -57,9 +57,10 @@ sudo apt-get install \
     software-properties-common -y
 
 wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb \
-  -o libicu52.deb
+  -O libicu52.deb
+
 wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb \
-  -o libpng12.deb
+  -O libpng12.deb
 
 sudo dpkg -i libicu52.deb
 sudo dpkg -i libpng12.deb
@@ -94,8 +95,9 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 # Outher                -> lsb_release -cs
 version=$(lsb_release -cs)
 
-if [ version -eq "tina" ] || [ version -eq "tessa" ]; then
+if [ $version = "tina" ] || [ $version = "tessa" ]; then
   version="bionic"
+fi
 
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -133,7 +135,7 @@ nvm install --lts
 sudo apt-get install yarn -y
 
 # Reactotron
-wget https://github.com/infinitered/reactotron/releases/download/v2.16.0/Reactotron.2.16.0.AppImage \ 
+wget https://github.com/infinitered/reactotron/releases/download/v2.16.0/Reactotron.2.16.0.AppImage \
   -O reactotron.appimage
 
 chmod +x reactotron.appimage
