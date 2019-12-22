@@ -3,9 +3,9 @@
 
 init()
 {
-  echo "=========================="
-  echo "= $1: INIT ==============="
-  echo "=========================="
+  echo "-"
+  echo "| $1: INIT ---------------"
+  echo "-"
 }
 
 echo "======================="
@@ -83,19 +83,16 @@ sudo add-apt-repository ppa:openjdk-r/ppa
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-# vlc
-sudo add-apt-repository ppa:videolan/master-daily -y
-
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Ask for OS -----
-# Mint tessa or tina    -> bionic
+# Mint tricia, tessa or tina    -> bionic
 # Ubuntu 19.04          -> Cosmic
 # Outher                -> lsb_release -cs
 version=$(lsb_release -cs)
 
-if [ $version = "tina" ] || [ $version = "tessa" ]; then
+if [ $version = "tricia" ] || [ $version = "tina" ] || [ $version = "tessa" ]; then
   version="bionic"
 fi
 
@@ -135,14 +132,13 @@ nvm install --lts
 sudo apt-get install yarn -y
 
 # Reactotron
-wget https://github.com/infinitered/reactotron/releases/download/v2.16.0/Reactotron.2.16.0.AppImage \
-  -O reactotron.appimage
+wget https://github.com/infinitered/reactotron/releases/download/v2.17.1/Reactotron-2.17.1.AppImage \
+  -O reactotron.AppImage
 
-chmod +x reactotron.appimage
-sudo mv reactotron.appimage ~/Appimages/
+chmod +x reactotron.AppImage
+sudo mv reactotron.AppImage ~/AppImages/
 
-cd ~/Appimages
-sudo ./reactotron.appimage
+sudo ~/Appimages/reactotron.AppImage
 cd $local
 
 # MongoDb Compass
@@ -156,7 +152,14 @@ sudo snap install --classic code # VS Code
 sudo snap install intellij-idea-community --classic
 sudo snap install insomnia
 sudo snap install postbird
+
+# Media
+sudo snap install discord
 sudo snap install spotify
+sudo snap install vlc
+
+# Photo editor
+sudo snap install krita
 
 # Arduino
 wget https://downloads.arduino.cc/arduino-1.8.10-linux64.tar.xz
@@ -165,9 +168,6 @@ sudo rm arduino-1.8.10-linux64.tar.xz
 
 sudo mv arduino* /opt
 sudo bash /opt/arduino*/install.sh
-
-# VLC
-sudo apt-get install vlc -y
 
 # Docker
 sudo apt-get install \
@@ -179,14 +179,10 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Databases
+sudo docker pull influxdb
 sudo docker pull postgres
 sudo docker pull mongo
 sudo docker pull redis
-sudo docker pull influxdb
-
-# Discord
-wget https://dl.discordapp.net/apps/linux/0.0.9/discord-0.0.9.deb
-sudo dpkg -i discord-0.0.9.deb
 
 # Virtual Box 6
 wget https://download.virtualbox.org/virtualbox/6.0.8/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb -o vmbox.deb
@@ -197,13 +193,14 @@ wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_
 sudo chmod +x ./genymotion.bin
 
 sudo mv genymotion.bin /opt/genymotion.bin
-cd /opt && ./genymotion.bin -y
+cd /opt && ./genymotion.bin
 
 cd $local
 
 # end
-sudo apt-get install -f
+sudo apt-get install -fy 
 sudo apt --fix-broken install -y
+sudo apt autoremove -y
 
 sudo chown -R $USER ~/*
 
