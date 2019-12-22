@@ -8,24 +8,14 @@ init()
   echo "-"
 }
 
-echo "======================="
-echo "| Root mode necessary |"
-echo "======================="
-
-sudo apt install gconf2 -y
-sudo dpkg-reconfigure gconf2
-
 mkdir -p ./installation
 cd installation
 
 local=$(pwd)
 
+sudo apt install gconf2 -y
+sudo dpkg-reconfigure gconf2
 sudo apt-get update -y
-
-# Variables
-
-user=$user
-home="/home/$USER"
 
 # Ask for OS -----
 # Mint tricia, tessa or tina    -> bionic
@@ -81,9 +71,9 @@ sudo wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2
 sudo dpkg -i libicu52.deb
 sudo dpkg -i libpng12.deb
 
-mkdir -p $home/Pictures/icons
-mkdir -p $home/Appimages
-mkdir -p $home/Android/Sdk
+mkdir -p ~/Pictures/icons
+mkdir -p ~/AppImages
+mkdir -p ~/Android/Sdk
 
 sudo apt-get update -y
 
@@ -142,9 +132,9 @@ sudo wget https://github.com/infinitered/reactotron/releases/download/v2.17.1/Re
   -O reactotron.AppImage
 
 sudo chmod +x reactotron.AppImage
-sudo mv reactotron.AppImage $home/AppImages/
+sudo mv reactotron.AppImage ~/AppImages/
 
-cd $home/Appimages
+cd ~/AppImages
 sudo ./reactotron.AppImage
 cd $local
 
@@ -183,7 +173,7 @@ sudo apt-get install \
     containerd.io -y
 
 sudo groupadd docker
-sudo usermod -aG docker $user
+sudo usermod -aG docker $USER
 
 # Databases
 sudo docker pull influxdb
@@ -192,7 +182,7 @@ sudo docker pull mongo
 sudo docker pull redis
 
 # Virtual Box 6
-sudo wget https://download.virtualbox.org/virtualbox/6.0.8/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb -o vmbox.deb
+sudo wget https://download.virtualbox.org/virtualbox/6.1.0/virtualbox-6.1_6.1.0-135406~Ubuntu~eoan_amd64.deb -o vmbox.deb
 sudo dpkg -i vmbox.deb
 
 # Genymotion for fun
@@ -204,12 +194,12 @@ cd /opt && ./genymotion.bin
 
 cd $local
 
-# end
+# Finishing
 sudo apt-get install -fy 
 sudo apt --fix-broken install -y
 sudo apt autoremove -y
 
-sudo chown -R $user $home/*
+sudo chown -R $USER ~/*
 
 # oh my zsh - terminal
 sudo apt-get install zsh -y
