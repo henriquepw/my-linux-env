@@ -12,14 +12,30 @@ echo "======================="
 echo "| Root mode necessary |"
 echo "======================="
 
+sudo apt install gconf2 -y
 sudo dpkg-reconfigure gconf2
 
-[ -d ./installation ] || mkdir ./installation
+mkdir -p ./installation
 cd installation
 
 local=$(pwd)
 
 sudo apt-get update -y
+
+# Variables
+
+user=$user
+home="/home/$USER"
+
+# Ask for OS -----
+# Mint tricia, tessa or tina    -> bionic
+# Ubuntu 19.04          -> Cosmic
+# Outher                -> lsb_release -cs
+version=$(lsb_release -cs)
+
+if [ $version = "tricia" ] || [ $version = "tina" ] || [ $version = "tessa" ]; then
+  version="bionic"
+fi
 
 ###############
 # Dependecies #
@@ -56,18 +72,18 @@ sudo apt-get install \
     gnupg-agent \
     software-properties-common -y
 
-wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb \
+sudo wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb \
   -O libicu52.deb
 
-wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb \
+sudo wget http://ftp.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_amd64.deb \
   -O libpng12.deb
 
 sudo dpkg -i libicu52.deb
 sudo dpkg -i libpng12.deb
 
-[ -d ~/Pictures/icons ] || mkdir ~/Pictures/icons
-[ -d ~/Appimages ] || mkdir ~/Appimages
-[ -d ~/Android/Sdk ] || mkdir -p ~/Android/Sdk
+mkdir -p $home/Pictures/icons
+mkdir -p $home/Appimages
+mkdir -p $home/Android/Sdk
 
 sudo apt-get update -y
 
@@ -86,26 +102,16 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-# Ask for OS -----
-# Mint tricia, tessa or tina    -> bionic
-# Ubuntu 19.04          -> Cosmic
-# Outher                -> lsb_release -cs
-version=$(lsb_release -cs)
-
-if [ $version = "tricia" ] || [ $version = "tina" ] || [ $version = "tessa" ]; then
-  version="bionic"
-fi
-
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $version \
    stable"
 
 # Virtual Box
-wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+sudo wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+sudo wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 
-sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib"
+sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian $version contrib"
 
 sudo apt-get update -y
 sudo apt update -y
@@ -132,17 +138,18 @@ nvm install --lts
 sudo apt-get install yarn -y
 
 # Reactotron
-wget https://github.com/infinitered/reactotron/releases/download/v2.17.1/Reactotron-2.17.1.AppImage \
+sudo wget https://github.com/infinitered/reactotron/releases/download/v2.17.1/Reactotron-2.17.1.AppImage \
   -O reactotron.AppImage
 
-chmod +x reactotron.AppImage
-sudo mv reactotron.AppImage ~/AppImages/
+sudo chmod +x reactotron.AppImage
+sudo mv reactotron.AppImage $home/AppImages/
 
-sudo ~/Appimages/reactotron.AppImage
+cd $home/Appimages
+sudo ./reactotron.AppImage
 cd $local
 
 # MongoDb Compass
-wget https://downloads.mongodb.com/compass/mongodb-compass_1.18.0_amd64.deb -O compass.deb
+sudo wget https://downloads.mongodb.com/compass/mongodb-compass_1.18.0_amd64.deb -O compass.deb
 sudo dpkg -i compass.deb
 
 # Snap
@@ -162,9 +169,9 @@ sudo snap install vlc
 sudo snap install krita
 
 # Arduino
-wget https://downloads.arduino.cc/arduino-1.8.10-linux64.tar.xz
-tar xf arduino-1.8.10-linux64.tar.xz
-sudo rm arduino-1.8.10-linux64.tar.xz
+sudo wget https://downloads.arduino.cc/arduino-1.8.10-linux64.tar.xz -O arduino.tar.xz
+tar xf arduino.tar.xz
+sudo rm arduino.tar.xz
 
 sudo mv arduino* /opt
 sudo bash /opt/arduino*/install.sh
@@ -176,7 +183,7 @@ sudo apt-get install \
     containerd.io -y
 
 sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $user
 
 # Databases
 sudo docker pull influxdb
@@ -185,11 +192,11 @@ sudo docker pull mongo
 sudo docker pull redis
 
 # Virtual Box 6
-wget https://download.virtualbox.org/virtualbox/6.0.8/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb -o vmbox.deb
+sudo wget https://download.virtualbox.org/virtualbox/6.0.8/virtualbox-6.0_6.0.8-130520~Ubuntu~bionic_amd64.deb -o vmbox.deb
 sudo dpkg -i vmbox.deb
 
 # Genymotion for fun
-wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin -o genymotion.bin
+sudo wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin -o genymotion.bin
 sudo chmod +x ./genymotion.bin
 
 sudo mv genymotion.bin /opt/genymotion.bin
@@ -202,7 +209,7 @@ sudo apt-get install -fy
 sudo apt --fix-broken install -y
 sudo apt autoremove -y
 
-sudo chown -R $USER ~/*
+sudo chown -R $user $home/*
 
 # oh my zsh - terminal
 sudo apt-get install zsh -y
