@@ -5,19 +5,18 @@
 - Arduino
 - Discord
 - Docker
-- Genymotion for fun
+- Genymotion for fun*
 - Git
-- Gnome Tweak
+- Gnome Tweak*
 - insomnia
 - IntelliJ
 - MongoDb Compass
 - Node.js
 - NVM
 - PostBird
-- Reactotron
+- Reactotron*
 - Snap
 - Spotify
-- Steam
 - Virtual Box
 - VLC
 - VS Code
@@ -25,7 +24,7 @@
 
 `* Not yet` 
 
-## My Vs Code config
+## [My Vs Code config](https://gist.github.com/henry-ns/94ef383da4e55a67a17a8d29adcdf6cd)
 
 ### VS Code plugin
 - Better Comments
