@@ -92,10 +92,12 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $version \
-   stable"
+# sudo add-apt-repository \
+#   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+#   $version \
+#   stable"
+echo -e "\ndeb [arch=amd64] https://download.docker.com/linux/ubuntu $version stable" \ 
+  | sudo tee -a /etc/apt/sources.list
 
 # Virtual Box
 sudo wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
@@ -182,11 +184,11 @@ sudo docker pull mongo
 sudo docker pull redis
 
 # Virtual Box 6
-sudo wget https://download.virtualbox.org/virtualbox/6.1.0/virtualbox-6.1_6.1.0-135406~Ubuntu~eoan_amd64.deb -o vmbox.deb
+sudo wget https://download.virtualbox.org/virtualbox/6.1.0/virtualbox-6.1_6.1.0-135406~Ubuntu~eoan_amd64.deb -O vmbox.deb
 sudo dpkg -i vmbox.deb
 
 # Genymotion for fun
-sudo wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin -o genymotion.bin
+sudo wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin -O genymotion.bin
 sudo chmod +x ./genymotion.bin
 
 sudo mv genymotion.bin /opt/genymotion.bin
