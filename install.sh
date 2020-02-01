@@ -1,5 +1,5 @@
-# Debian based systems
 #!/bin/bash
+# Debian based systems
 
 init()
 {
@@ -96,8 +96,8 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 #   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 #   $version \
 #   stable"
-echo -e "\ndeb [arch=amd64] https://download.docker.com/linux/ubuntu $version stable" \ 
-  | sudo tee -a /etc/apt/sources.list
+echo -e "\ndeb [arch=amd64] https://download.docker.com/linux/ubuntu $version stable" | \
+  sudo tee -a /etc/apt/sources.list
 
 # Virtual Box
 sudo wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
