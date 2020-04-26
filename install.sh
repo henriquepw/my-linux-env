@@ -171,7 +171,7 @@ sudo snap install vlc
 sudo snap install krita
 
 # Arduino
-sudo wget https://downloads.arduino.cc/arduino-1.8.10-linux64.tar.xz -O arduino.tar.xz
+sudo wget https://downloads.arduino.cc/arduino-1.8.12-linux64.tar.xz -O arduino.tar.xz
 tar xf arduino.tar.xz
 sudo rm arduino.tar.xz
 
@@ -188,7 +188,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 
