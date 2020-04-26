@@ -16,20 +16,25 @@ local=$(pwd)
 sudo apt install gconf2 -y
 sudo dpkg-reconfigure gconf2
 sudo apt-get update -y
-
-# Ask for OS -----
+ 
 # Mint tricia, tessa or tina    -> bionic
-# Ubuntu 19.04          -> Cosmic
+# Ubuntu 20.04          -> bionic or eoan
 # Outher                -> lsb_release -cs
 version=$(lsb_release -cs)
 
+# For Linux Mint
 if [ $version = "tricia" ] || [ $version = "tina" ] || [ $version = "tessa" ]; then
   version="bionic"
 fi
 
-if [ $version = "eoan" ]; then
-  version="disco"
+# Form Ubunto 20.04
+if [ $version = "focal" ]; then
+  version="bionic"
 fi
+
+#if [ $version = "eoan" ]; then
+#  version="disco"
+#fi
 
 ###############
 # Dependecies #
@@ -157,6 +162,7 @@ sudo snap install insomnia
 sudo snap install postbird
 
 # Media
+sudo snap install obs-studio
 sudo snap install discord
 sudo snap install spotify
 sudo snap install vlc
