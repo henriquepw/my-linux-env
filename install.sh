@@ -150,7 +150,7 @@ sudo ./reactotron.AppImage
 cd $local
 
 # MongoDb Compass
-sudo wget https://downloads.mongodb.com/compass/mongodb-compass_1.18.0_amd64.deb -O compass.deb
+sudo wget https://downloads.mongodb.com/compass/mongodb-compass_1.20.5_amd64.deb -O compass.deb
 sudo dpkg -i compass.deb
 
 # Snap
@@ -161,9 +161,13 @@ sudo snap install intellij-idea-community --classic
 sudo snap install insomnia
 sudo snap install postbird
 
+# Social
+sudo snap install discord
+sudo snap install slack --classic
+sudo snap install zoom-client
+
 # Media
 sudo snap install obs-studio
-sudo snap install discord
 sudo snap install spotify
 sudo snap install vlc
 
@@ -188,7 +192,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -O /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 
@@ -199,7 +203,7 @@ sudo docker pull mongo
 sudo docker pull redis
 
 # Virtual Box 6
-sudo wget https://download.virtualbox.org/virtualbox/6.1.0/virtualbox-6.1_6.1.0-135406~Ubuntu~eoan_amd64.deb -O vmbox.deb
+sudo wget https://download.virtualbox.org/virtualbox/6.1.6/virtualbox-6.1_6.1.6-137129~Ubuntu~${version}_amd64.deb -O vmbox.deb
 sudo dpkg -i vmbox.deb
 
 # Genymotion for fun
@@ -217,6 +221,10 @@ sudo apt --fix-broken install -y
 sudo apt autoremove -y
 
 sudo chown -R $USER ~/*
+
+#Hyper Terminal
+sudo wget https://github.com/zeit/hyper/releases/download/3.0.2/hyper_3.0.2_amd64.deb -O hyper.deb
+sudo dpkg -i hyper.deb
 
 # oh my zsh - terminal
 sudo apt-get install zsh -y
