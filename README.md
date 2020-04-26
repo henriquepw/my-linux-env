@@ -1,32 +1,73 @@
-# My linux environment for programming
+<!-- <p align="center">
+  <a href="http://leituraorganica.netlify.com/">
+    <img alt="Logo" src="./src/assets/icon.png" width="100" />
+  </a>
+</p> -->
+<h1 align="center">
+  My linux environment for programming
+</h1>
+
+<p align="center">
+  <a href="https://github.com/henry-ns/portfolio/graphs/commit-activity" alt="Maintenance">
+    <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="./LICENSE" alt="License: MIT">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" />
+  </a>
+  <a href="https://www.codefactor.io/repository/github/henry-ns/my-linux-environment" alt="CodeFactor">
+    <img src="https://www.codefactor.io/repository/github/henry-ns/my-linux-environment/badge" />
+  </a>
+</p>
+
 ## Debian based systems
 
-### The script installs these programs
+### :package: The script installs these programs
 - Arduino
 - Discord
 - Docker
-- Genymotion for fun*
+- Docker Compose
 - Git
-- Gnome Tweak*
 - insomnia
 - IntelliJ
+- Krita
 - MongoDb Compass
 - Node.js
 - NVM
+- OBS Studio
 - PostBird
 - Reactotron*
+- Slack
 - Snap
 - Spotify
-- Virtual Box
 - VLC
 - VS Code
 - Yarn
+- Zoom
 
-`* Not yet` 
+#### :card_file_box: Databases (into Docker)
+- InfluxDB
+- PostgreSQL
+- MongoDB
+- Redis
+
+#### :construction: Not Yet
+- Gnome Tweak
+- Virtual Box
+
+#### :lipstick: Linux Theme
+- **Application**: [Nordic Darker](https://www.gnome-look.org/p/1267246/)
+- **Cursor**: [Capitaine Cursor Light](https://www.gnome-look.org/p/1148692/)
+- **Icons**: [Tela Purple](https://www.gnome-look.org/p/1279924/)
+- **Shell**: [Nordic Darker](https://www.gnome-look.org/p/1267246/)
+- **Sound**: System default
+
+#### :bookmark: Extensions (on Tweaks)
+- Dash to dock
+- Unite
 
 ## [My Vs Code config](https://gist.github.com/henry-ns/94ef383da4e55a67a17a8d29adcdf6cd)
 
-### VS Code plugin
+### :dizzy: VS Code plugin
 - Better Comments
 - Bracket Pair Colorizer
 - Color Highlight
@@ -42,52 +83,3 @@
 - Prettier - Code formatter
 - vscode-database
 - vscode-styled-components
-
-### VS Code settings (JSON)
-
-```json
-{
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Material Theme Palenight",
-
-  "editor.fontFamily": "Fira Code, monospace",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 18,
-  "editor.lineHeight": 26,
-
-  "editor.minimap.renderCharacters": false,
-  "editor.minimap.showSlider": "always",
-
-  "editor.renderLineHighlight": "gutter",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.rulers": [80, 120],
-  "editor.tabSize": 2,
-  "terminal.integrated.fontSize": 16,
-
-  "terminal.integrated.shell.osx": "/bin/zsh",
-
-  "eslint.autoFixOnSave": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    {
-      "language": "typescript",
-      "autoFix": true
-    },
-    {
-      "language": "typescripttreact",
-      "autoFix": true
-    }
-  ],
-
-  "prettier.endOfLine": "lf",
-  "prettier.eslintIntegration": true,
-  "files.eol": "\n",
-
-  "git.autofetch": true,
-  "git.enableSmartCommit": true,
-
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "javascript.updateImportsOnFileMove.enabled": "always"
-}
-```
