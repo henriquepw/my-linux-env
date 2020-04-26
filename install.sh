@@ -108,12 +108,6 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 echo -e "\ndeb [arch=amd64] https://download.docker.com/linux/ubuntu $version stable" | \
   sudo tee -a /etc/apt/sources.list
 
-# Virtual Box
-sudo wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-sudo wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-
-sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian $version contrib"
-
 sudo apt-get update -y
 sudo apt update -y
 
@@ -192,9 +186,8 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -O /usr/local/bin/docker-compose
+sudo wget -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -O /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-
 
 # Databases
 sudo docker pull influxdb
@@ -215,16 +208,16 @@ cd /opt && ./genymotion.bin
 
 cd $local
 
+# Hyper Terminal
+sudo wget https://github.com/zeit/hyper/releases/download/3.0.2/hyper_3.0.2_amd64.deb -O hyper.deb
+sudo dpkg -i hyper.deb
+
 # Finishing
 sudo apt-get install -fy 
 sudo apt --fix-broken install -y
 sudo apt autoremove -y
 
 sudo chown -R $USER ~/*
-
-#Hyper Terminal
-sudo wget https://github.com/zeit/hyper/releases/download/3.0.2/hyper_3.0.2_amd64.deb -O hyper.deb
-sudo dpkg -i hyper.deb
 
 # oh my zsh - terminal
 sudo apt-get install zsh -y
