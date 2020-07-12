@@ -13,9 +13,9 @@ cd installation
 
 local=$(pwd)
 
-sudo apt install gconf2 -y
+sudo aptitude install gconf2 -y
 sudo dpkg-reconfigure gconf2
-sudo apt-get update -y
+sudo aptitude update -y
  
 # Mint tricia, tessa or tina    -> bionic
 # Mint 20 ulyana                -> bionic
@@ -37,7 +37,7 @@ fi
 ###############
 init DEPENDECIES
 
-sudo apt-get install  \
+sudo aptitude install  \
     libgl1-mesa-glx \
     libegl1-mesa  \
     libxrandr2  \
@@ -60,7 +60,7 @@ sudo apt-get install  \
     g++ -y
 
 # Docker
-sudo apt-get install \
+sudo aptitude install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -80,7 +80,7 @@ mkdir -p ~/Pictures/icons
 mkdir -p ~/apps
 mkdir -p ~/android/sdk
 
-sudo apt-get update -y
+sudo aptitude update -y
 
 ################
 # Repositories #
@@ -104,15 +104,14 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 echo -e "\ndeb [arch=amd64] https://download.docker.com/linux/ubuntu $version stable" | \
   sudo tee -a /etc/apt/sources.list
 
-sudo apt-get update -y
-sudo apt update -y
+sudo aptitude update -y
 
 #################
 # installations #
 #################
 init INSTALLATIONS
 
-sudo apt-get install \
+sudo aptitude install \
     openjdk-8-jre \    # JRE 8
     openjdk-8-jdk \    # JDK 8
     git -y             # Git
@@ -126,7 +125,7 @@ export NVM_DIR="$HOME/.nvm"
 nvm install --lts
 
 # Yarn
-sudo apt-get install yarn -y
+sudo aptitude install yarn -y
 
 # Reactotron
 sudo wget https://github.com/infinitered/reactotron/releases/download/v2.17.1/Reactotron-2.17.1.AppImage \
@@ -144,7 +143,7 @@ sudo wget https://downloads.mongodb.com/compass/mongodb-compass_1.20.5_amd64.deb
 sudo dpkg -i compass.deb
 
 # Snap
-sudo apt install snapd -y
+sudo aptitude install snapd -y
 
 sudo snap install --classic code # VS Code
 sudo snap install intellij-idea-community --classic
@@ -174,7 +173,7 @@ sudo mv arduino* /opt
 sudo bash /opt/arduino*/install.sh
 
 # Docker
-sudo apt-get install \
+sudo aptitude install \
     docker-ce \
     docker-ce-cli \
     containerd.io -y
@@ -210,14 +209,14 @@ sudo wget https://github.com/zeit/hyper/releases/download/3.0.2/hyper_3.0.2_amd6
 sudo dpkg -i hyper.deb
 
 # Finishing
-sudo apt-get install -fy 
-sudo apt --fix-broken install -y
-sudo apt autoremove -y
+sudo aptitude install -fy 
+sudo aptitude --fix-broken install -y
+sudo aptitude autoremove -y
 
 sudo chown -R $USER ~/*
 
 # oh my zsh - terminal
-sudo apt-get install zsh -y
+sudo aptitude install zsh -y
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
 

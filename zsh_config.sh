@@ -6,7 +6,7 @@ sudo chown -R $USER ~/.zplugin
 chsh -s /bin/zsh
 
 # Colors
-sudo apt-get install dconf-cli -y
+sudo aptitude install dconf-cli -y
 
 # Theme
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
