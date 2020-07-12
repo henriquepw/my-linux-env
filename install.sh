@@ -109,10 +109,10 @@ echo -e "\ndeb [arch=amd64] https://download.docker.com/linux/ubuntu $version st
 
 # Add insomnia to sources 
 echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" \
-    | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+  | sudo tee -a /etc/apt/sources.list.d/insomnia.list
 
 wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc \
-    | sudo apt-key add -
+  | sudo apt-key add -
 
 # OBS studio
 sudo add-apt-repository ppa:obsproject/obs-studio
@@ -125,11 +125,12 @@ sudo aptitude update -y
 init INSTALLATIONS
 
 sudo aptitude install \
-    openjdk-8-jre \    # JRE 8
-    openjdk-8-jdk \    # JDK 8
-    virtalbox     \    # Virtual Box
-    insomnia      \    # Insomnia
-    git -y             # Git
+  openjdk-8-jre \
+  openjdk-8-jdk \
+  virtalbox \
+  insomnia \
+  ulauncher \
+  git -y
 
 # NVM
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
@@ -160,35 +161,29 @@ cd $local
 sudo wget https://downloads.mongodb.com/compass/mongodb-compass_1.21.2_amd64.deb -O compass.deb
 sudo dpkg -i compass.deb
 
-# TODO: install vs code
+# VS code
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
-# TODO: install postbird
+# Postbird
 sudo wget https://github.com/Paxa/postbird/releases/download/0.8.4/Postbird_0.8.4_amd64.deb -O postbird.deb
 sudo dpkg -i postbird.deb
 
-# TODO: install obs-studio  
+# OBS Studio  
 sudo aptitude install ffmpeg -y obs-studio -y 
 
-# TODO: use flatpack instead of snap
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 flatpak install flathub \ 
-  # Development
-  com.jetbrains.IntelliJ-IDEA-Community \ # sudo snap install intellij-idea-community --classic
-
-  # Social
-  com.discordapp.Discord                \ # sudo snap install discord
-  com.slack.Slack                       \ # sudo snap install slack --classic
-
-  # Media
-  us.zoom.Zoom                          \ # sudo snap install zoom-client
-  com.spotify.Client                    \ # sudo snap install spotify
-  org.videolan.VLC                      \ # sudo snap install vlc
-
-  # Photo editor
-  org.kde.krita                         \ # sudo snap install krita
-  org.inkscape.Inkscape                 \ # sudo snap install inkscape
+  com.jetbrains.IntelliJ-IDEA-Community \
+  com.discordapp.Discord \
+  com.slack.Slack \
+  us.zoom.Zoom \
+  com.spotify.Client \
+  org.videolan.VLC \
+  org.kde.krita \
+  org.inkscape.Inkscape -y
  
 # Arduino
 sudo wget https://downloads.arduino.cc/arduino-1.8.13-linux64.tar.xz -O arduino.tar.xz
@@ -201,9 +196,9 @@ sudo chown -R $USER /opt/arduino*
 
 # Docker
 sudo aptitude install \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io -y
+  docker-ce \
+  docker-ce-cli \
+  containerd.io -y
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
