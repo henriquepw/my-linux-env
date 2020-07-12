@@ -4,7 +4,7 @@
 init()
 {
   echo "-"
-  echo "| $1: INIT ---------------"
+  echo "| $1: INIT =========="
   echo "-"
 }
 
@@ -18,8 +18,8 @@ sudo dpkg-reconfigure gconf2
 sudo apt-get update -y
  
 # Mint tricia, tessa or tina    -> bionic
-# Ubuntu 20.04          -> bionic or eoan
-# Outher                -> lsb_release -cs
+# Mint 20 ulyana                -> bionic
+# Outher                        -> lsb_release -cs
 version=$(lsb_release -cs)
 
 # For Linux Mint
@@ -27,14 +27,10 @@ if [ $version = "tricia" ] || [ $version = "tina" ] || [ $version = "tessa" ]; t
   version="bionic"
 fi
 
-# Form Ubunto 20.04
-if [ $version = "focal" ]; then
-  version="bionic"
+# Form Linux Mint 20
+if [ $version = "ulyana" ]; then
+  version="focal"
 fi
-
-#if [ $version = "eoan" ]; then
-#  version="disco"
-#fi
 
 ###############
 # Dependecies #
@@ -81,8 +77,8 @@ sudo dpkg -i libicu52.deb
 sudo dpkg -i libpng12.deb
 
 mkdir -p ~/Pictures/icons
-mkdir -p ~/AppImages
-mkdir -p ~/Android/Sdk
+mkdir -p ~/apps
+mkdir -p ~/android/sdk
 
 sudo apt-get update -y
 
@@ -137,9 +133,9 @@ sudo wget https://github.com/infinitered/reactotron/releases/download/v2.17.1/Re
   -O reactotron.AppImage
 
 sudo chmod +x reactotron.AppImage
-sudo mv reactotron.AppImage ~/AppImages/
+sudo mv reactotron.AppImage ~/apps/
 
-cd ~/AppImages
+cd ~/apps
 sudo ./reactotron.AppImage
 cd $local
 
@@ -167,6 +163,7 @@ sudo snap install vlc
 
 # Photo editor
 sudo snap install krita
+sudo snap install inkscape
 
 # Arduino
 sudo wget https://downloads.arduino.cc/arduino-1.8.12-linux64.tar.xz -O arduino.tar.xz
