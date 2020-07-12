@@ -3,9 +3,9 @@
 
 # Java and Android
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_HOME="$HOME/android/sdk"
 
-export PATH="$PATH:$HOME/Android/android-studio/bin"
+export PATH="$PATH:$HOME/android/android-studio/bin"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="$PATH:$ANDROID_HOME/tools/bin"
@@ -16,8 +16,14 @@ export ZSH="$HOME/.oh-my-zsh"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/.fastlane/bin"
 
+#Homebrew
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+
 # Snap
 export PATH="$PATH:/snap/bin"
+
+# FB Flipper
+export PATH="$PATH:$HOME/apps/flipper"
 
 # Yarn
 export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
@@ -25,8 +31,11 @@ export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 # Define alias
 alias install='sudo apt-get install'
 alias up='sudo apt-get update && sudo apt-get upgrade'
-alias fix='sudo apt-get update --fix-missing'
+alias fix-update='sudo apt-get update --fix-missing'
+alias fix-broken='sudo apt --fix-broken install'
+
 alias listen="lsof -i -P -n | grep LISTEN"
+alias keyb="setxkbmap -model abnt -layout us -variant intl"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
