@@ -90,6 +90,9 @@ init REPOSITORIES
 # Java
 sudo add-apt-repository ppa:openjdk-r/ppa
 
+# Ulauncher
+sudo add-apt-repository ppa:agornostal/ulauncher
+
 # yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
@@ -104,6 +107,16 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 echo -e "\ndeb [arch=amd64] https://download.docker.com/linux/ubuntu $version stable" | \
   sudo tee -a /etc/apt/sources.list
 
+# Add insomnia to sources 
+echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" \
+    | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+
+wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc \
+    | sudo apt-key add -
+
+# OBS studio
+sudo add-apt-repository ppa:obsproject/obs-studio
+
 sudo aptitude update -y
 
 #################
@@ -114,6 +127,8 @@ init INSTALLATIONS
 sudo aptitude install \
     openjdk-8-jre \    # JRE 8
     openjdk-8-jdk \    # JDK 8
+    virtalbox     \    # Virtual Box
+    insomnia      \    # Insomnia
     git -y             # Git
 
 # NVM
@@ -124,8 +139,11 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install --lts
 
+# PNPM and Gatsby CLI
+npm i -g pnpm gatsby
+
 # Yarn
-sudo aptitude install yarn -y
+sudo aptitude install --no-install-recommends yarn -y
 
 # Reactotron
 sudo wget https://github.com/infinitered/reactotron/releases/download/v2.17.1/Reactotron-2.17.1.AppImage \
@@ -139,38 +157,47 @@ sudo ./reactotron.AppImage
 cd $local
 
 # MongoDb Compass
-sudo wget https://downloads.mongodb.com/compass/mongodb-compass_1.20.5_amd64.deb -O compass.deb
+sudo wget https://downloads.mongodb.com/compass/mongodb-compass_1.21.2_amd64.deb -O compass.deb
 sudo dpkg -i compass.deb
 
-# Snap
-sudo aptitude install snapd -y
+# TODO: install vs code
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
-sudo snap install --classic code # VS Code
-sudo snap install intellij-idea-community --classic
-sudo snap install insomnia
-sudo snap install postbird
+# TODO: install postbird
+sudo wget https://github.com/Paxa/postbird/releases/download/0.8.4/Postbird_0.8.4_amd64.deb -O postbird.deb
+sudo dpkg -i postbird.deb
 
-# Social
-sudo snap install discord
-sudo snap install slack --classic
-sudo snap install zoom-client
+# TODO: install obs-studio  
+sudo aptitude install ffmpeg -y obs-studio -y 
 
-# Media
-sudo snap install obs-studio
-sudo snap install spotify
-sudo snap install vlc
+# TODO: use flatpack instead of snap
+flatpak install flathub \ 
+  # Development
+  com.jetbrains.IntelliJ-IDEA-Community \ # sudo snap install intellij-idea-community --classic
 
-# Photo editor
-sudo snap install krita
-sudo snap install inkscape
+  # Social
+  com.discordapp.Discord                \ # sudo snap install discord
+  com.slack.Slack                       \ # sudo snap install slack --classic
 
+  # Media
+  us.zoom.Zoom                          \ # sudo snap install zoom-client
+  com.spotify.Client                    \ # sudo snap install spotify
+  org.videolan.VLC                      \ # sudo snap install vlc
+
+  # Photo editor
+  org.kde.krita                         \ # sudo snap install krita
+  org.inkscape.Inkscape                 \ # sudo snap install inkscape
+ 
 # Arduino
-sudo wget https://downloads.arduino.cc/arduino-1.8.12-linux64.tar.xz -O arduino.tar.xz
+sudo wget https://downloads.arduino.cc/arduino-1.8.13-linux64.tar.xz -O arduino.tar.xz
 tar xf arduino.tar.xz
 sudo rm arduino.tar.xz
 
 sudo mv arduino* /opt
 sudo bash /opt/arduino*/install.sh
+sudo chown -R $USER /opt/arduino*
 
 # Docker
 sudo aptitude install \
@@ -184,16 +211,6 @@ sudo usermod -aG docker $USER
 # Docker Compose
 sudo wget -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -O /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-
-# Databases
-sudo docker pull influxdb
-sudo docker pull postgres
-sudo docker pull mongo
-sudo docker pull redis
-
-# Virtual Box 6
-sudo wget https://download.virtualbox.org/virtualbox/6.1.6/virtualbox-6.1_6.1.6-137129~Ubuntu~${version}_amd64.deb -O vmbox.deb
-sudo dpkg -i vmbox.deb
 
 # Genymotion for fun
 sudo wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin -O genymotion.bin
@@ -209,7 +226,6 @@ sudo wget https://github.com/zeit/hyper/releases/download/3.0.2/hyper_3.0.2_amd6
 sudo dpkg -i hyper.deb
 
 # Finishing
-sudo aptitude install -fy 
 sudo aptitude --fix-broken install -y
 sudo aptitude autoremove -y
 
