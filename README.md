@@ -22,37 +22,33 @@
 ## Debian based systems
 
 ### :package: The script installs these programs
-- Arduino
-- Discord
-- Docker
-- Docker Compose
-- Git
-- insomnia
-- IntelliJ
-- Krita
-- MongoDb Compass
-- Node.js
-- NVM
-- OBS Studio
-- PostBird
-- Reactotron*
-- Slack
-- Snap
-- Spotify
-- VLC
-- VS Code
-- Yarn
-- Zoom
-
-#### :card_file_box: Databases (into Docker)
-- InfluxDB
-- PostgreSQL
-- MongoDB
-- Redis
-
-#### :construction: Not Yet
-- Gnome Tweak
-- Virtual Box
+- [x] Arduino
+- [x] Discord
+- [x] Docker
+- [x] Docker Compose
+- [x] Git
+- [ ] Gnome Tweak
+- [ ] Homebrew
+- [ ] insomnia
+- [x] IntelliJ
+- [x] Krita
+- [ ] Latex Full
+- [ ] Mailspring
+- [x] MongoDb Compass
+- [x] Node.js
+- [x] NVM
+- [x] OBS Studio
+- [x] PostBird
+- [/] Reactotron
+- [x] Slack
+- [x] Spotify
+- [x] Ulauncher
+- [ ] Virtual Box
+- [x] VLC
+- [ ] VS Code
+- [ ] Watchman
+- [x] Yarn
+- [x] Zoom
 
 #### :lipstick: Linux Theme
 - **Application**: [Nordic Darker](https://www.gnome-look.org/p/1267246/)
@@ -62,10 +58,18 @@
 - **Sound**: System default
 
 #### :bookmark: Extensions (on Tweaks)
-- Dash to dock
-- Unite
+- [ ] Dash to dock
+- [ ] Unite
 
 ## [My Vs Code config](https://gist.github.com/henry-ns/94ef383da4e55a67a17a8d29adcdf6cd)
+
+### :dizzy: Ulauncher plugins
+- Emoji
+- Process Murderer
+- Better file browser
+- Docker
+- Gitmoji
+- Dracula (color theme)
 
 ### :dizzy: VS Code plugin
 - Better Comments

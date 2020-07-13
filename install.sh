@@ -22,12 +22,12 @@ sudo aptitude update -y
 # Outher                        -> lsb_release -cs
 version=$(lsb_release -cs)
 
-# For Linux Mint
+# For Linux Mint 19
 if [ $version = "tricia" ] || [ $version = "tina" ] || [ $version = "tessa" ]; then
   version="bionic"
 fi
 
-# Form Linux Mint 20
+# For Linux Mint 20
 if [ $version = "ulyana" ]; then
   version="focal"
 fi
@@ -38,34 +38,36 @@ fi
 init DEPENDECIES
 
 sudo aptitude install  \
-    libgl1-mesa-glx \
-    libegl1-mesa  \
-    libxrandr2  \
-    libxrandr2  \
-    libxss1  \
-    libxcursor1  \
-    libxcomposite1  \
-    libasound2  \
-    libxi6  \
-    libxtst6  \
-    xz-utils \
-    libqt5webkit5  \
-    libqt5multimedia5  \
-    libqt5xml5  \
-    libqt5script5 \
-    libqt5scripttools5 \
-    gcc-multilib \
-    lib32z1 \
-    lib32stdc++6 \
-    g++ -y
+  build-essential \
+  libgl1-mesa-glx \
+  libegl1-mesa  \
+  libxrandr2  \
+  libxrandr2  \
+  libxss1  \
+  libxcursor1  \
+  libxcomposite1  \
+  libasound2  \
+  libxi6  \
+  libxtst6  \
+  xz-utils \
+  libqt5webkit5  \
+  libqt5multimedia5  \
+  libqt5xml5  \
+  libqt5script5 \
+  libqt5scripttools5 \
+  gcc-multilib \
+  lib32z1 \
+  lib32stdc++6 \
+  file \
+  g++ -y
 
 # Docker
 sudo aptitude install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common -y
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  gnupg-agent \
+  software-properties-common -y
 
 sudo wget http://mirrors.kernel.org/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb \
   -O libicu52.deb
@@ -127,9 +129,6 @@ init INSTALLATIONS
 sudo aptitude install \
   openjdk-8-jre \
   openjdk-8-jdk \
-  virtalbox \
-  insomnia \
-  ulauncher \
   git -y
 
 # NVM
@@ -171,12 +170,18 @@ sudo wget https://github.com/Paxa/postbird/releases/download/0.8.4/Postbird_0.8.
 sudo dpkg -i postbird.deb
 
 # OBS Studio  
-sudo aptitude install ffmpeg -y obs-studio -y 
+sudo aptitude install ffmpeg obs-studio -y 
 
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# Virtual box 
+sudo aptitude install virtalbox -y 
 
-flatpak install flathub \ 
-  com.jetbrains.IntelliJ-IDEA-Community \
+# Insomnia
+sudo aptitude install insomnia -y 
+
+# Ulauncher 
+sudo aptitude install ulauncher -y 
+
+sudo flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community \
   com.discordapp.Discord \
   com.slack.Slack \
   us.zoom.Zoom \
@@ -208,11 +213,22 @@ sudo wget -L "https://github.com/docker/compose/releases/download/1.25.5/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Genymotion for fun
-sudo wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin -O genymotion.bin
-sudo chmod +x ./genymotion.bin
+# sudo wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin -O genymotion.bin
+# sudo chmod +x ./genymotion.bin
 
-sudo mv genymotion.bin /opt/genymotion.bin
-cd /opt && ./genymotion.bin
+# sudo mv genymotion.bin /opt/genymotion.bin
+# cd /opt && ./genymotion.bin
+
+# Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+
+# Watchman
+brew install watchman
 
 cd $local
 
