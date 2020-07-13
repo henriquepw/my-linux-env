@@ -8,6 +8,8 @@ chsh -s /bin/zsh
 # Colours
 sudo aptitude install dconf-cli -y
 
+ZSH_CUSTOM="$HOME/.oh-my-zsh"
+
 # Theme
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
 
