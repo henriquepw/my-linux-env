@@ -1,11 +1,11 @@
 #!/bin/bash
 
 sudo chown -R $USER ~/.oh-my-zsh
-sudo chown -R $USER ~/.zplugin
+sudo chown -R $USER ~/.zinit
 
 chsh -s /bin/zsh
 
-# Colors
+# Colours
 sudo aptitude install dconf-cli -y
 
 # Theme

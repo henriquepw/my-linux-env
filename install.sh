@@ -221,16 +221,19 @@ sudo wget https://github.com/zeit/hyper/releases/download/3.0.2/hyper_3.0.2_amd6
 sudo dpkg -i hyper.deb
 
 # Finishing
-sudo aptitude --fix-broken install -y
-sudo aptitude autoremove -y
+sudo apt --fix-broken install -y
+sudo apt autoremove -y
 
 sudo chown -R $USER ~/*
+
+cd ..
 
 # oh my zsh - terminal
 sudo aptitude install zsh -y
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
 
+# this is not going to be run
 bash ./zsh_config.sh
 
 echo "================================="
