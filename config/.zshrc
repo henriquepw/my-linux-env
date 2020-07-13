@@ -19,9 +19,6 @@ export PATH="$PATH:$HOME/.fastlane/bin"
 #Homebrew
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 
-# Snap
-export PATH="$PATH:/snap/bin"
-
 # FB Flipper
 export PATH="$PATH:$HOME/apps/flipper"
 

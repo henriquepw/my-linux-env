@@ -26,10 +26,11 @@
 - [x] Discord
 - [x] Docker
 - [x] Docker Compose
+- [ ] Flipper
 - [x] Git
 - [ ] Gnome Tweak
 - [ ] Homebrew
-- [ ] insomnia
+- [X] insomnia
 - [x] IntelliJ
 - [x] Krita
 - [ ] Latex Full
@@ -38,15 +39,17 @@
 - [x] Node.js
 - [x] NVM
 - [x] OBS Studio
+- [x] ObinsKit
+- [x] Plank
 - [x] PostBird
-- [/] Reactotron
+- [x] Reactotron
 - [x] Slack
 - [x] Spotify
 - [x] Ulauncher
 - [ ] Virtual Box
 - [x] VLC
 - [ ] VS Code
-- [ ] Watchman
+- [x] Watchman
 - [x] Yarn
 - [x] Zoom
 

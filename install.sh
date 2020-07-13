@@ -13,9 +13,9 @@ cd installation
 
 local=$(pwd)
 
-sudo aptitude install gconf2 -y
+sudo apt-get install gconf2 -y
 sudo dpkg-reconfigure gconf2
-sudo aptitude update -y
+sudo apt-get update -y
  
 # Mint tricia, tessa or tina    -> bionic
 # Mint 20 ulyana                -> bionic
@@ -37,7 +37,7 @@ fi
 ###############
 init DEPENDECIES
 
-sudo aptitude install  \
+sudo apt-get install  \
   build-essential \
   libgl1-mesa-glx \
   libegl1-mesa  \
@@ -59,10 +59,11 @@ sudo aptitude install  \
   lib32z1 \
   lib32stdc++6 \
   file \
+  ffmpeg \
   g++ -y
 
 # Docker
-sudo aptitude install \
+sudo apt-get install \
   apt-transport-https \
   ca-certificates \
   curl \
@@ -82,7 +83,7 @@ mkdir -p ~/Pictures/icons
 mkdir -p ~/apps
 mkdir -p ~/android/sdk
 
-sudo aptitude update -y
+sudo apt-get update -y
 
 ################
 # Repositories #
@@ -116,20 +117,20 @@ echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" \
 wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc \
   | sudo apt-key add -
 
+# Plank Dock
+sudo add-apt-repository ppa:docky-core/stable
+
 # OBS studio
 sudo add-apt-repository ppa:obsproject/obs-studio
 
-sudo aptitude update -y
+sudo apt-get update -y
 
 #################
 # installations #
 #################
 init INSTALLATIONS
 
-sudo aptitude install \
-  openjdk-8-jre \
-  openjdk-8-jdk \
-  git -y
+sudo apt-get install openjdk-8-jre openjdk-8-jdk git -y
 
 # NVM
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
@@ -143,7 +144,7 @@ nvm install --lts
 npm i -g pnpm gatsby
 
 # Yarn
-sudo aptitude install --no-install-recommends yarn -y
+sudo apt-get install --no-install-recommends yarn -y
 
 # Reactotron
 sudo wget https://github.com/infinitered/reactotron/releases/download/v2.17.1/Reactotron-2.17.1.AppImage \
@@ -169,17 +170,13 @@ sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.micr
 sudo wget https://github.com/Paxa/postbird/releases/download/0.8.4/Postbird_0.8.4_amd64.deb -O postbird.deb
 sudo dpkg -i postbird.deb
 
-# OBS Studio  
-sudo aptitude install ffmpeg obs-studio -y 
-
-# Virtual box 
-sudo aptitude install virtalbox -y 
-
-# Insomnia
-sudo aptitude install insomnia -y 
-
-# Ulauncher 
-sudo aptitude install ulauncher -y 
+# OBS Studio, Virtual Box, Insomnia, Ulauncher and Plank  
+sudo apt-get install \
+  obs-studio \
+  virtualbox \
+  insomnia \
+  ulauncher \
+  plank -y
 
 sudo flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community \
   com.discordapp.Discord \
@@ -200,7 +197,7 @@ sudo bash /opt/arduino*/install.sh
 sudo chown -R $USER /opt/arduino*
 
 # Docker
-sudo aptitude install \
+sudo apt-get install \
   docker-ce \
   docker-ce-cli \
   containerd.io -y
@@ -211,13 +208,6 @@ sudo usermod -aG docker $USER
 # Docker Compose
 sudo wget -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -O /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-
-# Genymotion for fun
-# sudo wget https://dl.genymotion.com/releases/genymotion-3.0.2/genymotion-3.0.2-linux_x64.bin -O genymotion.bin
-# sudo chmod +x ./genymotion.bin
-
-# sudo mv genymotion.bin /opt/genymotion.bin
-# cd /opt && ./genymotion.bin
 
 # Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -247,15 +237,15 @@ sudo wget https://github.com/zeit/hyper/releases/download/3.0.2/hyper_3.0.2_amd6
 sudo dpkg -i hyper.deb
 
 # Finishing
-sudo apt --fix-broken install -y
-sudo apt autoremove -y
+sudo apt-get --fix-broken install -y
+sudo apt-get autoremove -y
 
 sudo chown -R $USER ~/*
 
 cd ..
 
 # oh my zsh - terminal
-sudo aptitude install zsh -y
+sudo apt-get install zsh -y
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
 
