@@ -230,6 +230,16 @@ echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 # Watchman
 brew install watchman
 
+# Obins Kit (for my keyboard)
+sudo wget http://releases.obins.net/occ/linux/deb/ObinsKit_1.1.4_x64.deb -O obinskit.deb
+sudo dpkg -i obinskit.deb
+
+# Mailspring
+sudo wget https://github.com/Foundry376/Mailspring/releases/download/1.7.8/mailspring-1.7.8-amd64.deb \
+  -O mailspring.deb
+
+sudo dpkg -i mailspring.deb
+
 cd $local
 
 # Hyper Terminal
