@@ -185,7 +185,9 @@ sudo flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community \
   com.spotify.Client \
   org.videolan.VLC \
   org.kde.krita \
-  org.inkscape.Inkscape -y
+  org.inkscape.Inkscape \
+  com.github.gijsgoudzwaard.image-optimizer \
+  com.github.mdh34.quickdocs -y
  
 # Arduino
 sudo wget https://downloads.arduino.cc/arduino-1.8.13-linux64.tar.xz -O arduino.tar.xz
@@ -220,14 +222,20 @@ echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 # Watchman
 brew install watchman
 
+# Flipper
+sudo wget https://codeload.github.com/facebook/flipper/tar.gz/v0.50.0 -O flipper.tar.gz
+tar -xzf flipper.tar.gz
+
+mkdir -p ~/apps/flipper
+mv flipper*/* ~/apps/flipper/
+
+
 # Obins Kit (for my keyboard)
 sudo wget http://releases.obins.net/occ/linux/deb/ObinsKit_1.1.4_x64.deb -O obinskit.deb
 sudo dpkg -i obinskit.deb
 
 # Mailspring
-sudo wget https://github.com/Foundry376/Mailspring/releases/download/1.7.8/mailspring-1.7.8-amd64.deb \
-  -O mailspring.deb
-
+sudo wget https://github.com/Foundry376/Mailspring/releases/download/1.7.8/mailspring-1.7.8-amd64.deb -O mailspring.deb
 sudo dpkg -i mailspring.deb
 
 cd $local

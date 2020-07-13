@@ -28,9 +28,8 @@
 - [x] Docker Compose
 - [ ] Flipper
 - [x] Git
-- [ ] Gnome Tweak
-- [ ] Homebrew
-- [X] insomnia
+- [x] Homebrew
+- [x] insomnia
 - [x] IntelliJ
 - [x] Krita
 - [ ] Latex Full
