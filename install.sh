@@ -130,7 +130,7 @@ sudo apt-get update -y
 #################
 init INSTALLATIONS
 
-sudo apt-get install openjdk-8-jre openjdk-8-jdk git -y
+sudo apt-get install openjdk-8-jre openjdk-8-jdk git unzip -y
 
 # NVM
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
@@ -169,14 +169,6 @@ sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.micr
 # Postbird
 sudo wget https://github.com/Paxa/postbird/releases/download/0.8.4/Postbird_0.8.4_amd64.deb -O postbird.deb
 sudo dpkg -i postbird.deb
-
-# OBS Studio, Virtual Box, Insomnia, Ulauncher and Plank  
-sudo apt-get install \
-  obs-studio \
-  virtualbox \
-  insomnia \
-  ulauncher \
-  plank -y
 
 sudo flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community \
   com.discordapp.Discord \
@@ -222,13 +214,20 @@ echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 # Watchman
 brew install watchman
 
+#Github CLI
+brew install github/gh/gh
+
 # Flipper
-sudo wget https://codeload.github.com/facebook/flipper/tar.gz/v0.50.0 -O flipper.tar.gz
-tar -xzf flipper.tar.gz
+sudo wget https://github.com/facebook/flipper/releases//download/v0.50.0/Flipper-linux.zip -O flipper.zip
 
 mkdir -p ~/apps/flipper
-mv flipper*/* ~/apps/flipper/
+mv flipper.zip ~/apps/flipper/
 
+cd ~/apps/flipper
+
+unzip -a flipper.zip
+
+cd $local
 
 # Obins Kit (for my keyboard)
 sudo wget http://releases.obins.net/occ/linux/deb/ObinsKit_1.1.4_x64.deb -O obinskit.deb
@@ -238,7 +237,14 @@ sudo dpkg -i obinskit.deb
 sudo wget https://github.com/Foundry376/Mailspring/releases/download/1.7.8/mailspring-1.7.8-amd64.deb -O mailspring.deb
 sudo dpkg -i mailspring.deb
 
-cd $local
+sudo apt-get --fix-broken install -y
+
+# OBS Studio, Virtual Box, Insomnia, Ulauncher and Plank  
+sudo apt-get install obs-studio \
+  virtualbox \
+  insomnia \
+  ulauncher \
+  plank -y
 
 # Hyper Terminal
 sudo wget https://github.com/zeit/hyper/releases/download/3.0.2/hyper_3.0.2_amd64.deb -O hyper.deb

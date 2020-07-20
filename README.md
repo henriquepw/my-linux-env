@@ -26,14 +26,15 @@
 - [x] Discord
 - [x] Docker
 - [x] Docker Compose
-- [ ] Flipper
+- [/] Flipper
 - [x] Git
+- [ ] Github CLI
 - [x] Homebrew
 - [x] insomnia
 - [x] IntelliJ
 - [x] Krita
 - [ ] Latex Full
-- [ ] Mailspring
+- [x] Mailspring
 - [x] MongoDb Compass
 - [x] Node.js
 - [x] NVM
@@ -45,7 +46,7 @@
 - [x] Slack
 - [x] Spotify
 - [x] Ulauncher
-- [ ] Virtual Box
+- [/] Virtual Box
 - [x] VLC
 - [ ] VS Code
 - [x] Watchman
