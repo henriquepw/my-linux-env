@@ -123,6 +123,11 @@ sudo add-apt-repository ppa:docky-core/stable
 # OBS studio
 sudo add-apt-repository ppa:obsproject/obs-studio
 
+# VS Code
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+
 sudo apt-get update -y
 
 #################
@@ -162,9 +167,7 @@ sudo wget https://downloads.mongodb.com/compass/mongodb-compass_1.21.2_amd64.deb
 sudo dpkg -i compass.deb
 
 # VS code
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt-get install code -y
 
 # Postbird
 sudo wget https://github.com/Paxa/postbird/releases/download/0.8.4/Postbird_0.8.4_amd64.deb -O postbird.deb
@@ -191,10 +194,7 @@ sudo bash /opt/arduino*/install.sh
 sudo chown -R $USER /opt/arduino*
 
 # Docker
-sudo apt-get install \
-  docker-ce \
-  docker-ce-cli \
-  containerd.io -y
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
@@ -227,6 +227,8 @@ cd ~/apps/flipper
 
 unzip -a flipper.zip
 
+rm -rf flipper.zip
+
 cd $local
 
 # Obins Kit (for my keyboard)
@@ -240,11 +242,15 @@ sudo dpkg -i mailspring.deb
 sudo apt-get --fix-broken install -y
 
 # OBS Studio, Virtual Box, Insomnia, Ulauncher and Plank  
-sudo apt-get install obs-studio \
-  virtualbox \
-  insomnia \
-  ulauncher \
-  plank -y
+sudo apt-get install obs-studio -y
+
+sudo apt-get install virtualbox -y
+
+sudo apt-get install insomnia -y
+
+sudo apt-get install ulauncher -y
+
+sudo apt-get install plank -y
 
 # Hyper Terminal
 sudo wget https://github.com/zeit/hyper/releases/download/3.0.2/hyper_3.0.2_amd64.deb -O hyper.deb
@@ -256,7 +262,13 @@ sudo apt-get autoremove -y
 
 sudo chown -R $USER ~/*
 
-cd ..
+# Icon Theme
+git clone https://github.com/vinceliuice/Tela-icon-theme.git
+cd Tela-icon-theme
+
+./install.sh purple
+
+cd ../..
 
 # oh my zsh - terminal
 sudo apt-get install zsh -y
