@@ -19,4 +19,7 @@ ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/the
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
 
 mv ~/.zshrc ./config/cp.zshrc
+mv ~/.hyper.js ./config/cp.hyper.js
+
 cp ./config/.zshrc ~/
+cp ./config/.hyper.js ~/
