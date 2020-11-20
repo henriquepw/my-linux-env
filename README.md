@@ -31,7 +31,6 @@
 - [x] Github CLI
 - [x] Homebrew
 - [x] insomnia
-- [x] IntelliJ
 - [x] Krita
 - [x] Mailspring
 - [x] MongoDb Compass
@@ -41,7 +40,6 @@
 - [x] ObinsKit
 - [x] Plank
 - [x] PostBird
-- [x] Reactotron
 - [x] Slack
 - [x] Spotify
 - [x] Ulauncher
@@ -59,10 +57,6 @@
 - **Shell**: [Nordic Darker](https://www.gnome-look.org/p/1267246/)
 - **Sound**: System default
 
-#### :bookmark: Extensions (on Tweaks)
-- [ ] Dash to dock
-- [ ] Unite
-
 ## [My Vs Code config](https://gist.github.com/henry-ns/94ef383da4e55a67a17a8d29adcdf6cd)
 
 ### :dizzy: Ulauncher plugins
@@ -72,20 +66,4 @@
 - Docker
 - Gitmoji
 - Dracula (color theme)
-
-### :dizzy: VS Code plugin
-- Better Comments
-- Bracket Pair Colorizer
-- Color Highlight
-- Color Picker
-- Docker
-- DotENV
-- EditorConfig for VS Code
-- ESLint
-- GitLens
-- Markdown All in One
-- Material Icon Theme
-- Material Theme
-- Prettier - Code formatter
-- vscode-database
-- vscode-styled-components
+- 

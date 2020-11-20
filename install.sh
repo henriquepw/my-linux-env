@@ -145,22 +145,8 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install --lts
 
-# PNPM and Gatsby CLI
-npm i -g pnpm gatsby
-
 # Yarn
 sudo apt-get install --no-install-recommends yarn -y
-
-# Reactotron
-sudo wget https://github.com/infinitered/reactotron/releases/download/v2.17.1/Reactotron-2.17.1.AppImage \
-  -O reactotron.AppImage
-
-sudo chmod +x reactotron.AppImage
-sudo mv reactotron.AppImage ~/apps/
-
-cd ~/apps
-sudo ./reactotron.AppImage
-cd $local
 
 # MongoDb Compass
 sudo wget https://downloads.mongodb.com/compass/mongodb-compass_1.21.2_amd64.deb -O compass.deb
@@ -173,8 +159,7 @@ sudo apt-get install code -y
 sudo wget https://github.com/Paxa/postbird/releases/download/0.8.4/Postbird_0.8.4_amd64.deb -O postbird.deb
 sudo dpkg -i postbird.deb
 
-sudo flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community \
-  com.discordapp.Discord \
+sudo flatpak install flathub com.discordapp.Discord \
   com.slack.Slack \
   us.zoom.Zoom \
   com.spotify.Client \
