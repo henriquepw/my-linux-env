@@ -32,7 +32,6 @@
 - [x] Homebrew
 - [x] insomnia
 - [x] Krita
-- [x] Mailspring
 - [x] MongoDb Compass
 - [x] Node.js
 - [x] NVM
@@ -66,4 +65,3 @@
 - Docker
 - Gitmoji
 - Dracula (color theme)
-- 

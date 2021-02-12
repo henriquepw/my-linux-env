@@ -2,6 +2,7 @@ module.exports = {
   config: {
     updateChannel: 'stable',
     
+    fontSize: 14,
     fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
     fontWeight: 'normal',
     fontWeightBold: 'bold',
@@ -63,7 +64,8 @@ module.exports = {
 
   plugins: [
   // "hyper-nord"
-  "hyperterm-palenight"
+  "hyperterm-palenight",
+  "hyper-bloody"
   ],
 
   localPlugins: [],

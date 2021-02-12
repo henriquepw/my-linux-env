@@ -165,9 +165,7 @@ sudo flatpak install flathub com.discordapp.Discord \
   com.spotify.Client \
   org.videolan.VLC \
   org.kde.krita \
-  org.inkscape.Inkscape \
-  com.github.gijsgoudzwaard.image-optimizer \
-  com.github.mdh34.quickdocs -y
+  org.inkscape.Inkscape -y
  
 # Arduino
 sudo wget https://downloads.arduino.cc/arduino-1.8.13-linux64.tar.xz -O arduino.tar.xz
@@ -220,12 +218,6 @@ cd $local
 sudo wget http://releases.obins.net/occ/linux/deb/ObinsKit_1.1.4_x64.deb -O obinskit.deb
 sudo dpkg -i obinskit.deb
 
-# Mailspring
-sudo wget https://github.com/Foundry376/Mailspring/releases/download/1.7.8/mailspring-1.7.8-amd64.deb -O mailspring.deb
-sudo dpkg -i mailspring.deb
-
-sudo apt-get --fix-broken install -y
-
 # OBS Studio, Virtual Box, Insomnia, Ulauncher and Plank  
 sudo apt-get install obs-studio -y
 
@@ -245,7 +237,7 @@ sudo dpkg -i hyper.deb
 sudo apt-get --fix-broken install -y
 sudo apt-get autoremove -y
 
-sudo chown -R $USER ~/*
+sudo chown -R $USER $HOME/*
 
 # Icon Theme
 git clone https://github.com/vinceliuice/Tela-icon-theme.git

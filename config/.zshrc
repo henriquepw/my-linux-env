@@ -2,6 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Java and Android
+export NODE_OPTIONS=--max_old_space_size=4096
+
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export ANDROID_HOME="$HOME/android/sdk"
 
@@ -27,9 +29,9 @@ export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 # Define alias
 alias install='sudo apt-get install'
-alias up='sudo apt-get update && sudo apt-get upgrade'
+alias up='sudo apt-get update && sudo apt-get upgrade && flatpak update && brew upgrade'
 alias fix-update='sudo apt-get update --fix-missing'
-alias fix-broken='sudo apt --fix-broken install'
+alias fix-broken='sudo apt-get --fix-broken install'
 
 alias listen="lsof -i -P -n | grep LISTEN"
 alias keyb="setxkbmap -model abnt -layout us -variant intl"
